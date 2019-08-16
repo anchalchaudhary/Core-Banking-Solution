@@ -1,5 +1,6 @@
 package com.corebanking.spring.model;
 
-public class Employee {
-
+public class Employee 
+{
+	
 }
