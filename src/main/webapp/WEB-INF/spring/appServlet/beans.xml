@@ -28,11 +28,14 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:property-placeholder location="db.properties" />
+	<context:property-placeholder
+		location="db.properties" />
 
 
-	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<beans:property name="driverClassName" value="${driverClassName}" />
+	<beans:bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<beans:property name="driverClassName"
+			value="${driverClassName}" />
 		<beans:property name="url" value="${url}" />
 		<beans:property name="username" value="${username}" />
 		<beans:property name="password" value="${password}" />
@@ -56,4 +59,13 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
+	<beans:bean id="employeeDao"
+		class="com.corebanking.spring.dao.EmployeeDaoImpl">
+	</beans:bean>
+	<beans:bean id="employeeService"
+		class="com.corebanking.spring.service.EmployeeServiceImpl">
+	</beans:bean>
+	<context:component-scan
+		base-package="com.corebanking.spring" />
+
 </beans:beans>
