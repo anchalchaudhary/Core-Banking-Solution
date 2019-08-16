@@ -1,5 +1,6 @@
 package com.corebanking.spring.model;
 
+<<<<<<< HEAD
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,5 +39,9 @@ public class Employee {
 	public void setEmpPassword(String empPassword) {
 		this.empPassword = empPassword;
 	}
+=======
+public class Employee 
+{
+
 	
 }
