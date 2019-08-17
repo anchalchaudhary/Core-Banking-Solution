@@ -1,4 +1,4 @@
 .*
 !/.gitignore
-db.properties
+application.properties
 target/
