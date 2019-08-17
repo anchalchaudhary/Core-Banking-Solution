@@ -13,11 +13,11 @@ import com.corebanking.spring.model.Customer;
 import com.corebanking.spring.service.EmployeeService;
 
 @Controller
+@RequestMapping(value = "/employee")
 public class EmployeeController {
 
 	private EmployeeService employeeService;
 	@Autowired(required=true)
-	@Qualifier(value="employeeService")
 	public void setCustomerService(EmployeeService employeeService){
 		this.employeeService = employeeService;
 	}
