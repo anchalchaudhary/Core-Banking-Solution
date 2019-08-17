@@ -1,5 +1,6 @@
 package com.corebanking.spring.controller;
 
+import com.corebanking.spring.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -33,5 +34,18 @@ public class EmployeeController {
 		this.employeeService.addCustomer(customer);
 
 		return "redirect:/listcustomer";
-	} 
+	}
+
+	@RequestMapping(value = "/createAccount" , method = RequestMethod.GET)
+	public String showAccountCreation(Model model)
+	{
+		return "createAccount";
+	}
+	@RequestMapping(value = "/addAccount",method = RequestMethod.POST)
+	public String createAccount(@ModelAttribute("account") Account account)
+	{
+		this.employeeService.createAccount(account);
+		return "redirect:/listcustomer";
+	}
+
 }
