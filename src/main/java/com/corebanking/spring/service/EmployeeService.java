@@ -9,7 +9,7 @@ public interface EmployeeService {
 	
 	public void branchManagement();
 	public boolean addCustomer(Customer customer);
-	public void createAccount(Customer customer);
+	public boolean createAccount(Account account);
 	public void transactionManagement();
 	public Customer getCustomerDetails(int id);
 	public Account getCustomerAccountDetails(int id);

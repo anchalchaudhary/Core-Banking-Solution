@@ -4,15 +4,29 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Account 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@OneToOne
     @JoinColumn(name="customerId")
 	private Customer customerId;
 	private String accountno;
 	private long balance;
+
 	
 	@ManyToOne(optional = false)
     @JoinColumn(name="branchId")
