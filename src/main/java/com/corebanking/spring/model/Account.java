@@ -1,13 +1,27 @@
 package com.corebanking.spring.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class Account 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int accountId;
+	public int getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
 	@OneToOne
     @JoinColumn(name="customerId")
 	private Customer customerId;

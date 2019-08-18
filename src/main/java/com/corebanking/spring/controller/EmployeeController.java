@@ -1,12 +1,16 @@
 package com.corebanking.spring.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.corebanking.spring.model.Customer;
 import com.corebanking.spring.service.EmployeeService;
@@ -15,23 +19,46 @@ import com.corebanking.spring.service.EmployeeService;
 public class EmployeeController {
 
 	private EmployeeService employeeService;
-	@Autowired(required=true)
-	@Qualifier(value="employeeService")
-	public void setCustomerService(EmployeeService employeeService){
+	
+	public EmployeeController() {
+
+	}
+
+	@Autowired
+	public EmployeeController(EmployeeService employeeService) {
 		this.employeeService = employeeService;
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String showLogin(Model model) {
+	@RequestMapping(value = {"/","/home"} , method = RequestMethod.GET)
+	public ModelAndView showHome(HttpServletResponse response) throws IOException {
 		
-		return "createCustomer";
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("home");
+		return modelAndView;
+	}
+	@RequestMapping(value = "/addCustomer", method = RequestMethod.GET)
+	public ModelAndView showCreateCustomerForm() {
+		ModelAndView modelAndView = new ModelAndView("addCustomer");
+		modelAndView.addObject("headermessage", "Add Customer Details");
+		modelAndView.addObject("customer", new Customer());
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
-	public String createCustomer(@ModelAttribute("customer") Customer customer) {
+	public ModelAndView addNewCustomer(@ModelAttribute Customer customer, BindingResult bindingResult) {
 
-		this.employeeService.addCustomer(customer);
+		ModelAndView modelAndView = new ModelAndView("redirect:/home");
+		if(bindingResult.hasErrors()) {
+			return new ModelAndView("error");
+		}
 
-		return "redirect:/listcustomer";
+		boolean isAdded = employeeService.addCustomer(customer);
+		
+		if(isAdded) {
+			modelAndView.addObject("message", "New Customer successfully added");
+		} else {
+			return new ModelAndView("error");
+		}
+		return modelAndView;
 	} 
 }
