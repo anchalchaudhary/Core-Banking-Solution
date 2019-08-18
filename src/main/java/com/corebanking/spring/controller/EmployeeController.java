@@ -1,11 +1,16 @@
 package com.corebanking.spring.controller;
 
+
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+
+import com.corebanking.spring.model.Account;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,16 +21,22 @@ import com.corebanking.spring.model.Customer;
 import com.corebanking.spring.service.EmployeeService;
 
 @Controller
+@RequestMapping(value = "/employee")
 public class EmployeeController {
 
 	private EmployeeService employeeService;
+
 	
 	public EmployeeController() {
 
 	}
 
 	@Autowired
-	public EmployeeController(EmployeeService employeeService) {
+	public EmployeeController(EmployeeService employeeService) {}
+
+	@Autowired(required=true)
+	public void setCustomerService(EmployeeService employeeService){
+
 		this.employeeService = employeeService;
 	}
 	
@@ -52,6 +63,7 @@ public class EmployeeController {
 			return new ModelAndView("error");
 		}
 
+
 		boolean isAdded = employeeService.addCustomer(customer);
 		
 		if(isAdded) {
@@ -61,4 +73,20 @@ public class EmployeeController {
 		}
 		return modelAndView;
 	} 
+//		return "redirect:/listcustomer";
+//	}
+
+	@RequestMapping(value = "/createAccount" , method = RequestMethod.GET)
+	public String showAccountCreation(Model model)
+	{
+		return "createAccount";
+	}
+	@RequestMapping(value = "/addAccount",method = RequestMethod.POST)
+	public String createAccount(@ModelAttribute("account") Account account)
+	{
+		this.employeeService.createAccount(account);
+		return "redirect:/listcustomer";
+	}
+
+
 }

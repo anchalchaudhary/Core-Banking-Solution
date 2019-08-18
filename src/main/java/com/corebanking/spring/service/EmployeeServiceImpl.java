@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.corebanking.spring.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,8 @@ import com.corebanking.spring.repository.CustomerRepository;
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
-	private CustomerRepository customerRepository;	
+	private CustomerRepository customerRepository;
+	private AccountRepository accountRepository;
 	
 	public EmployeeServiceImpl() {
 		
@@ -45,9 +47,16 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public void createAccount(Customer customer) {
-		// TODO Auto-generated method stub
-		
+	public boolean createAccount(Account account)
+	{
+		try {
+			Account account1=accountRepository.save(account);
+			account1.setAccountno("GL"+account1.getId());
+			accountRepository.save(account1);
+			return true;
+		}catch(Exception ex) {
+			return false;
+		}
 	}
 
 	@Override
