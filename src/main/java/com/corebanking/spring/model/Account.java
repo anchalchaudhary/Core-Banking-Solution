@@ -7,7 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
+
+import javax.persistence.*;
+
 
 @Entity
 @Table
@@ -15,6 +19,7 @@ public class Account
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int accountId;
 	public int getAccountId() {
 		return accountId;
@@ -22,11 +27,24 @@ public class Account
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
+
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	@OneToOne
     @JoinColumn(name="customerId")
 	private Customer customerId;
 	private String accountno;
 	private long balance;
+
 	
 	@ManyToOne(optional = false)
     @JoinColumn(name="branchId")
