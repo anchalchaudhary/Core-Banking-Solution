@@ -10,6 +10,20 @@
 <body>
 	<form:form action="addBranch" modelAttribute="branch">
 		<table>
+		<c:if test="${!empty branch.name}">
+	<tr>
+		<td>
+			<form:label path="id">
+				<spring:message text="ID"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="id" readonly="true" size="8"  disabled="true" />
+			<form:hidden path="id" />
+		</td> 
+	</tr>
+	</c:if>
+		
 			<tr>
 				<td><form:label path="name">
 						<spring:message text="Name" />
@@ -35,8 +49,20 @@
 					</form:label></td>
 				<td><form:input path="empId" /></td>
 			</tr>	 --%>		
-		</table>
-		<input type="submit" value="Create" />
+		
+		<tr>
+		<td colspan="2">
+			<c:if test="${!empty branch.name}">
+				<input type="submit"
+					value="<spring:message text="Edit Branch"/>" />
+			</c:if>
+			<c:if test="${empty branch.name}">
+				<input type="submit"
+					value="<spring:message text="Add Branch"/>" />
+			</c:if>
+		</td>
+	</tr>
+	</table>
 	</form:form>
 </body>
 </html>

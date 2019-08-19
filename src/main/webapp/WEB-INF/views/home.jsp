@@ -13,5 +13,9 @@
 
 <a href="addBranch">Add branch</a>
 
+
+
+<a href="listBranch">Branches</a>
+
 </body>
 </html>
