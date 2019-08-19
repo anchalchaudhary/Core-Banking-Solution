@@ -9,5 +9,9 @@
 </head>
 <body>
 <a href="addCustomer">Add Customer</a>
+
+
+<a href="addBranch">Add branch</a>
+
 </body>
 </html>
