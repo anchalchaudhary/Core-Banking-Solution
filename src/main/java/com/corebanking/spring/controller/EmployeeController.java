@@ -48,7 +48,7 @@ public class EmployeeController {
 	}
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.GET)
 	public ModelAndView showCreateCustomerForm() {
-		ModelAndView modelAndView = new ModelAndView("addCustomer");
+		ModelAndView modelAndView = new ModelAndView("createCustomer");
 		modelAndView.addObject("headermessage", "Add Customer Details");
 		modelAndView.addObject("customer", new Customer());
 		return modelAndView;

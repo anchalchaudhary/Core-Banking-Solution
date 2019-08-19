@@ -20,7 +20,7 @@
 				<td><form:label path="phone">
 						<spring:message text="Contact Number" />
 					</form:label></td>
-				<td><form:input path="contact" /></td>
+				<td><form:input path="phone" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="address">
