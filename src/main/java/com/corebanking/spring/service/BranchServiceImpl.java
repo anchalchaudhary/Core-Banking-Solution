@@ -1,10 +1,14 @@
 package com.corebanking.spring.service;
 
 import com.corebanking.spring.model.Branch;
+import com.corebanking.spring.model.Customer;
 import com.corebanking.spring.repository.BranchRepository;
 import com.corebanking.spring.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -54,4 +58,13 @@ public class BranchServiceImpl implements  BranchService
             return false;
         }
     }
+    @Override
+    @Transactional
+	public List<Branch> getAllBranches()
+    {
+
+		List<Branch> list = new ArrayList<Branch>();
+		branchRepository.findAll().forEach(e -> list.add(e));
+		return list;
+	}
 }
