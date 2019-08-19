@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -66,5 +67,12 @@ public class BranchServiceImpl implements  BranchService
 		List<Branch> list = new ArrayList<Branch>();
 		branchRepository.findAll().forEach(e -> list.add(e));
 		return list;
+	}
+
+	@Override
+	public Optional<Branch> getBranchById(int id) {
+		// TODO Auto-generated method stub
+		 Optional<Branch> branch=branchRepository.findById(id);
+		return branch;
 	}
 }
