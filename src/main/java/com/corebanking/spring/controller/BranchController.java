@@ -4,6 +4,9 @@ import com.corebanking.spring.model.Branch;
 import com.corebanking.spring.model.Customer;
 import com.corebanking.spring.service.BranchService;
 import com.corebanking.spring.service.EmployeeService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -48,5 +51,14 @@ public class BranchController
 		}
 		return modelAndView;
 	} 
-    
+	
+    @RequestMapping(value = "/listBranch", method = RequestMethod.GET)
+	public ModelAndView showListBranches()
+	{
+    	ModelAndView modelAndView = new ModelAndView("listBranch");
+    	List<Branch> list=branchService.getAllBranches();
+		modelAndView.addObject("list", list);
+		return modelAndView;
+	}
+
 }
