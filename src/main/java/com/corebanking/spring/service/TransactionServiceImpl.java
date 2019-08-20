@@ -38,8 +38,6 @@ public class TransactionServiceImpl implements TransactionService
 			toaccount.setBalance(toaccount.getBalance()-transaction.getAmount());
 			accountRepository.save(fromaccount);
 			accountRepository.save(toaccount);
-
-
 			return true;
 		}catch(Exception ex) {
 			return false;
