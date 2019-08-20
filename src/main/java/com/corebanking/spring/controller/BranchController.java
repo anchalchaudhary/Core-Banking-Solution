@@ -1,12 +1,10 @@
 package com.corebanking.spring.controller;
 
-import com.corebanking.spring.model.Branch;
-import com.corebanking.spring.service.BranchService;
-import com.corebanking.spring.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.corebanking.spring.service.BranchService;
 
 @Controller
 @RequestMapping(value="/branch")
