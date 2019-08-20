@@ -10,6 +10,7 @@
 <body>
 <a href="addCustomer">Add Customer</a>
 
+<a href="createAccount">Add Account</a>
 
 <a href="addBranch">Add branch</a>
 
