@@ -6,6 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import com.corebanking.spring.model.Customer;
 import com.corebanking.spring.model.Employee;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+
 import com.corebanking.spring.model.Loan;
 
 @Repository

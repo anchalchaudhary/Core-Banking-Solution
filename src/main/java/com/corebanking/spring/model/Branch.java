@@ -18,31 +18,10 @@ public class Branch
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
-	private int id;
-
 	private int branchId;
-
 	private String address;
 	private String name;
 	private String ifsc;
-	
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
 	@OneToOne(fetch = FetchType.EAGER)
 	private Employee empId;
 	
@@ -62,14 +41,9 @@ public class Branch
 	public List<Account> getAccounts() {
 		return accounts;
 	}
-
-
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
-
 	}
-
-
 	public String getAddress() {
 		return address;
 	}

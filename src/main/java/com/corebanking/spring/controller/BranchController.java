@@ -3,9 +3,7 @@ package com.corebanking.spring.controller;
 <<<<<<< HEAD
 =======
 import com.corebanking.spring.model.Branch;
-import com.corebanking.spring.model.Customer;
 import com.corebanking.spring.service.BranchService;
-import com.corebanking.spring.service.EmployeeService;
 
 import java.util.List;
 

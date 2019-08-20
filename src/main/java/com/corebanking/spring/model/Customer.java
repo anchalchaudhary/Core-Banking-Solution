@@ -14,9 +14,6 @@ public class Customer
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
-
 	private int customerId;
 
 	private String name;
@@ -38,22 +35,13 @@ public class Customer
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
-
-
-
-
-
-
-
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getPhone() {
 		return phone;
 	}
@@ -78,9 +66,6 @@ public class Customer
 	public void setSalary(long salary) {
 		this.salary = salary;
 	}
-	
-
-
 	@OneToOne(mappedBy = "customer")
 	private Account account;
 	public int getCustomerId() {
@@ -95,7 +80,4 @@ public class Customer
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-
-	
-
 }

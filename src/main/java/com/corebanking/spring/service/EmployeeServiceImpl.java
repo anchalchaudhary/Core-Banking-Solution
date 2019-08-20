@@ -2,12 +2,10 @@ package com.corebanking.spring.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import com.corebanking.spring.repository.AccountRepository;
-import com.corebanking.spring.repository.BranchRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
