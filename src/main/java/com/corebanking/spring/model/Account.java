@@ -60,8 +60,4 @@ public class Account
 	public void setBranch(Branch branch) {
 		this.branch = branch;
 	}
-	
-
-
-
 }

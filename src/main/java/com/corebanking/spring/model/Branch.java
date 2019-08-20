@@ -19,7 +19,6 @@ public class Branch
 	private String address;
 	private String name;
 	private String ifsc;
-	
 	@OneToOne(fetch = FetchType.EAGER)
 	private Employee empId;
 	
