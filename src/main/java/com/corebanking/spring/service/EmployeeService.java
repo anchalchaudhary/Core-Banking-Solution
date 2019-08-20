@@ -14,4 +14,8 @@ public interface EmployeeService {
 	public Customer getCustomerDetails(int id);
 	public Account getCustomerAccountDetails(int id);
 	public List<Customer> getAllCustomers();
+
+
+	public boolean isRegistered(Customer customer);
+
 }

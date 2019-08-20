@@ -15,6 +15,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 </head>
 <body>
+
 	<div>
 		<jsp:include page="base_pre_login_header.jsp"></jsp:include>	
 	</div>
@@ -34,5 +35,20 @@
 	<div>
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
+
+<a href="addCustomer">Add Customer</a>
+
+
+
+<a href="createAccount">Add Account</a>
+
+
+<a href="addBranch">Add branch</a>
+
+
+
+<a href="listBranch">Branches</a>
+
+
 </body>
 </html>

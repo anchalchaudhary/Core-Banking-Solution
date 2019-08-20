@@ -8,6 +8,10 @@
 <title>Create Customer</title>
 </head>
 <body>
+
+
+	
+
 	<form:form action="addCustomer" modelAttribute="customer">
 		<table>
 			<tr>
