@@ -36,7 +36,7 @@ public class EmployeeController {
 
 	private TransactionService transactionService;
 
-
+	@Autowired
 	private CustomerService customerService;
 
 	public EmployeeController() {
@@ -68,6 +68,7 @@ public class EmployeeController {
 		modelAndView.addObject("customer", new Customer());
 		return modelAndView;
 	}
+	
 	@RequestMapping(value = {"/addCustomer","updateCustomer/addCustomer"}, method = RequestMethod.POST)
 	public ModelAndView addNewCustomer(@ModelAttribute Customer customer, BindingResult bindingResult) {
 
@@ -102,7 +103,11 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/viewCustomer/{id}", method = RequestMethod.GET)
 	public String viewCustomer(@PathVariable("id") int id, Model model) {
+		
+//		Customer customer = this.employeeService.getCustomerDetails(id).orElse(null);
 		model.addAttribute("customer", this.employeeService.getCustomerDetails(id).orElse(null));
+//		model.addAttribute("account", this.employeeService.getCustomerAccountDetails(customer));
+		
 		return "viewCustomer";	
 	}
 

@@ -40,5 +40,33 @@
 			</tr>
 		</table>
 	</c:if>
+	<c:if test="${!empty customer.account.accountId}">
+		<table>
+			<tr>
+				<th>Account ID</th>
+				<td>${customer.account.accountId}</td>
+			</tr>
+			<tr>
+				<th>Account Number</th>
+				<td>${customer.account.accountno}</td>
+			</tr>
+			<tr>
+				<th>Account Balance</th>
+				<td>${customer.account.balance}</td>
+			</tr>
+			<tr>
+				<th>Branch Name</th>
+				<td>${customer.account.branch.name}</td>
+			</tr>
+			<tr>
+				<th>Branch Address</th>
+				<td>${customer.account.branch.address}</td>
+			</tr>
+			<tr>
+				<th>Branch IFSC</th>
+				<td>${customer.account.branch.ifsc}</td>
+			</tr>
+		</table>
+	</c:if>
 </body>
 </html>
