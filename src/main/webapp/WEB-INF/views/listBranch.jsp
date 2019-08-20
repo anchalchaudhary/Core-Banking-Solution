@@ -22,11 +22,11 @@
 	</tr>
 	<c:forEach items="${list}" var="branch">
 		<tr>
-			<td><c:out value="${branch.id}"></c:out></td>
+			<td><c:out value="${branch.branchId}"></c:out></td>
 			<td>${branch.name}</td>
 			<td>${branch.ifsc}</td>
-			<td><a href="<c:url value='/updateBranch/${branch.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/deleteBranch/${branch.id}' />" >Delete</a></td>
+			<td><a href="<c:url value='/updateBranch/${branch.branchId}' />" >Edit</a></td>
+			<td><a href="<c:url value='/deleteBranch/${branch.branchId}' />" >Delete</a></td>
 		</tr>
 	</c:forEach>
 	</table>

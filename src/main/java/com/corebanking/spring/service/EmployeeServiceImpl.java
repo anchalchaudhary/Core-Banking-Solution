@@ -2,10 +2,13 @@ package com.corebanking.spring.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import com.corebanking.spring.repository.AccountRepository;
+import com.corebanking.spring.repository.BranchRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -22,23 +25,45 @@ import com.corebanking.spring.model.Customer;
 import com.corebanking.spring.repository.CustomerRepository;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
 
 	private CustomerRepository customerRepository;
 
 	@Autowired
-	@Qualifier(value = "customerRepository")
 	private CustomerRepository customerRepository;
-	
+
+	@Autowired
+	BranchService branchServiceImpl;
+
+	public BranchService getBranchServiceImpl() {
+		return branchServiceImpl;
+	}
+
+	public void setBranchServiceImpl(BranchService branchServiceImpl) {
+		this.branchServiceImpl = branchServiceImpl;
+	}
+
+	@Autowired
+	CustomerService customerServiceImpl;
+
+	public CustomerService getCustomerServiceImpl() {
+		return customerServiceImpl;
+	}
+
+	public void setCustomerServiceImpl(CustomerService customerServiceImpl) {
+		this.customerServiceImpl = customerServiceImpl;
+	}
+
 	@Autowired
 	@Qualifier(value = "accountRepository")
 
 	private AccountRepository accountRepository;
-	
+
 	public EmployeeServiceImpl() {
-		
+
 	}
+
 	
 
 	@Autowired
@@ -55,10 +80,22 @@ public class EmployeeServiceImpl implements EmployeeService{
 	 * this.accountRepository = accountRepository; }
 	 */	
 
+
+	@Autowired 
+	public EmployeeServiceImpl(CustomerRepository customerRepository){ 
+		super(); 
+		this.customerRepository = customerRepository; 
+	} 
+	public EmployeeServiceImpl(AccountRepository accountRepository) { 
+		super();
+		this.accountRepository = accountRepository; 
+	}
+
+
 	@Override
 	public void branchManagement() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -67,14 +104,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 		try {
 			customerRepository.save(customer);
 			return true;
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			return false;
 		}
 	}
 
 	@Override
-	public boolean createAccount(Account account)
-	{
+	public boolean createAccount(Account account) {
 		try {
 
 
@@ -83,18 +119,31 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 
 
-			@SuppressWarnings("unused")
-			Branch branch = account.getBranch();
-			@SuppressWarnings("unused")
-			BranchService branchService = new BranchServiceImpl();
+
+
+
+
+
+		
 			
-			
-			System.out.println(account.getCustomer().getName());
-			Account account1=accountRepository.save(account);
-			account1.setAccountno("GL"+account1.getAccountId());
+
+
+
+
+			//			BranchService branchService = new BranchServiceImpl();
+			Branch branch2 = account.getBranch();
+			Branch branch = branchServiceImpl.getBranchById(branch2.getBranchId()).orElse(null);
+			account.setBranch(branch);
+			Customer customer2 = account.getCustomer();
+			Customer customer = customerServiceImpl.getCustomerById(customer2.getCustomerId()).orElse(null);
+			account.setCustomer(customer);
+			Account account1 = new Account();
+			account1=accountRepository.save(account);
+			account1.setAccountno("GL" + account1.getAccountId());
+
 			accountRepository.save(account1);
 			return true;
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 
 			return false;
@@ -104,7 +153,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public void transactionManagement() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -118,7 +167,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public List<Customer> getAllCustomers() {
 
@@ -132,7 +181,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public boolean isRegistered(Customer customerId) {
 
-		if(customerRepository.findById(customerId.getCustomerId()) != null)
+		if (customerRepository.findById(customerId.getCustomerId()) != null)
 			return true;
 		return false;
 	}
