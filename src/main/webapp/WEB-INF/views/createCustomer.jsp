@@ -1,7 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page session="false"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -10,6 +10,15 @@
 <body>
 	<form:form action="addCustomer" modelAttribute="customer">
 		<table>
+			<c:if test="${!empty customer.customerId}">
+				<tr>
+					<td><form:label path="customerId">
+							<spring:message text="Customer ID" />
+						</form:label></td>
+					<td><form:input path="customerId" readonly="true" size="8"
+							disabled="true" /> <form:hidden path="customerId" /></td>
+				</tr>
+			</c:if>
 			<tr>
 				<td><form:label path="name">
 						<spring:message text="Name" />
@@ -39,7 +48,7 @@
 						<spring:message text="Salary" />
 					</form:label></td>
 				<td><form:input path="salary" /></td>
-			</tr>			
+			</tr>
 		</table>
 		<input type="submit" value="Create" />
 	</form:form>

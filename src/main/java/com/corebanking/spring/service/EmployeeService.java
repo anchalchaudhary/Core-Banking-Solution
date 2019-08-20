@@ -1,6 +1,7 @@
 package com.corebanking.spring.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.corebanking.spring.model.Account;
 import com.corebanking.spring.model.Customer;
@@ -11,11 +12,12 @@ public interface EmployeeService {
 	public boolean addCustomer(Customer customer);
 	public boolean createAccount(Account account);
 	public void transactionManagement();
-	public Customer getCustomerDetails(int id);
+	public Optional<Customer> getCustomerDetails(int id);
 	public Account getCustomerAccountDetails(int id);
 	public List<Customer> getAllCustomers();
 
 
 	public boolean isRegistered(Customer customer);
+	public boolean updateCustomer(Customer customer);
 
 }
