@@ -25,9 +25,6 @@ import com.corebanking.spring.repository.CustomerRepository;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-
-	private CustomerRepository customerRepository;
-
 	@Autowired
 	private CustomerRepository customerRepository;
 
@@ -62,23 +59,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	}
 
-	
-
-	@Autowired
-	public EmployeeServiceImpl(CustomerRepository customerRepository) {
-		super();
-		this.customerRepository = customerRepository;
-	}
-	
-
-	/*
-	 * @Autowired public EmployeeServiceImpl(CustomerRepository customerRepository)
-	 * { super(); this.customerRepository = customerRepository; } public
-	 * EmployeeServiceImpl(AccountRepository accountRepository) { super();
-	 * this.accountRepository = accountRepository; }
-	 */	
-
-
 	@Autowired 
 	public EmployeeServiceImpl(CustomerRepository customerRepository){ 
 		super(); 
@@ -110,24 +90,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public boolean createAccount(Account account) {
 		try {
-
-
-
-
-
-
-
-
-
-
-
-
-		
-			
-
-
-
-
 			//			BranchService branchService = new BranchServiceImpl();
 			Branch branch2 = account.getBranch();
 			Branch branch = branchServiceImpl.getBranchById(branch2.getBranchId()).orElse(null);

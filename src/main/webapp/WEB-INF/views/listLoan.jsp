@@ -20,7 +20,7 @@
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
-	<c:forEach items="${list}" var="branch">
+	<c:forEach items="${list}" var="loan">
 		<tr>
 			<td><c:out value="${loan.id}"></c:out></td>
 			<td>${loan.rate}</td>

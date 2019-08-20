@@ -1,7 +1,5 @@
 package com.corebanking.spring.controller;
 
-<<<<<<< HEAD
-=======
 import com.corebanking.spring.model.Branch;
 import com.corebanking.spring.service.BranchService;
 
@@ -44,10 +42,6 @@ public class BranchController
 		if(bindingResult.hasErrors()) {
 			return new ModelAndView("error");
 		}
-
-
-
-
 		if(branch.getBranchId()==0)
 
 		{
@@ -56,15 +50,17 @@ public class BranchController
 		else
 		{
 			branchService.updateBranch(branch);
+		}
+		return modelAndView;
+		
+	}
+	@RequestMapping(value="/listBranch", method = RequestMethod.GET)
 	public String showListBranches(Model model)
 	{
     	
     	List<Branch> list=branchService.getAllBranches();
     	for(Branch branch:list)
     	{
-
-    		System.out.println(branch.getName()+" "+branch.getId());
-
     		System.out.println(branch.getName()+" "+branch.getBranchId());
 
     	}

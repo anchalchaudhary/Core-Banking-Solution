@@ -8,19 +8,6 @@
 <title>Create Account</title>
 </head>
 <body>
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<form:form action="createAccount" modelAttribute="account">
 		<table>
 			<tr>
@@ -37,12 +24,6 @@
 				<td><form:input path="balance" /></td>
 			</tr>
 			<tr>
-
-
-
-
-
-
 				<td><form:label path="branch.branchId">
 						<spring:message text="Branch Id" />
 					</form:label></td>

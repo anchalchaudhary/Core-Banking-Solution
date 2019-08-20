@@ -23,14 +23,6 @@ public class EmployeeController {
 
 	private EmployeeService employeeService;
 
-
-
-
-
-
-
-
-
 	public EmployeeController() {
 
 	}
@@ -44,23 +36,8 @@ public class EmployeeController {
 
 		this.employeeService = employeeService;
 	}
-
-
-
-
-
-
-
-
 	@RequestMapping(value = {"/","/home"} , method = RequestMethod.GET)
-
 	public ModelAndView showHome(HttpServletResponse response) throws IOException {
-
-
-
-
-
-
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("home");
@@ -74,11 +51,6 @@ public class EmployeeController {
 		modelAndView.addObject("customer", new Customer());
 		return modelAndView;
 	}
-
-	
-
-
-
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
 	public ModelAndView addNewCustomer(@ModelAttribute Customer customer, BindingResult bindingResult) {
 
@@ -86,48 +58,14 @@ public class EmployeeController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("error");
 		}
-
-
-
 		boolean isAdded = employeeService.addCustomer(customer);
-		
-
-		boolean isAdded = employeeService.addCustomer(customer);
-
-
-
-
-
-
-
 		if(isAdded) {
-
 			modelAndView.addObject("message", "New Customer successfully added");
 		} else {
 			return new ModelAndView("error");
 		}
 		return modelAndView;
-
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-	
-
-
-
 
 	@RequestMapping(value = "/createAccount" , method = RequestMethod.GET)
 	public ModelAndView showAccountCreation(Model model)

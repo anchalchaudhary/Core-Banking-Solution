@@ -3,6 +3,8 @@ package com.corebanking.spring.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,7 @@ public class LoanServiceImpl implements LoanService{
 	}
 
 	@Override
+	@Transactional
 	public List<Loan> getLoanList() {
 		List<Loan> list = new ArrayList<Loan>();
 		loanRepository.findAll().forEach(e -> list.add(e));
