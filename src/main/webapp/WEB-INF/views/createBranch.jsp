@@ -9,6 +9,7 @@
 </head>
 <body>
 	<form:form action="addBranch" modelAttribute="branch">
+		<c:out value=""></c:out>
 		<table>
 		<c:if test="${!empty branch.name}">
 	<tr>
