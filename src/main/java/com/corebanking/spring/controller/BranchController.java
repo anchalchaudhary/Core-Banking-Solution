@@ -35,7 +35,7 @@ public class BranchController
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/addBranch", method = RequestMethod.POST)
+	@RequestMapping(value = {"/addBranch","updateBranch/addBranch"}, method = RequestMethod.POST)
 	public ModelAndView addNewBranch(@ModelAttribute Branch branch, BindingResult bindingResult) {
 
 		ModelAndView modelAndView = new ModelAndView("redirect:/addBranch");
@@ -57,19 +57,33 @@ public class BranchController
 	} 
 	
     @RequestMapping(value = "/listBranch", method = RequestMethod.GET)
-	public ModelAndView showListBranches()
+	public String showListBranches(Model model)
 	{
-    	ModelAndView modelAndView = new ModelAndView("listBranch");
+    	
     	List<Branch> list=branchService.getAllBranches();
-		modelAndView.addObject("list", list);
-		return modelAndView;
+    	for(Branch branch:list)
+    	{
+    		System.out.println(branch.getName()+" "+branch.getId());
+    	}
+    	model.addAttribute("list", list);
+    	return "listBranch";
+		
 	}
 
     @RequestMapping(value="/updateBranch/{id}",method = RequestMethod.GET)
     public String updateBranch(@PathVariable("id") int id, Model model)
     {
-    	model.addAttribute("branch", this.branchService.getBranchById(id));
+    	model.addAttribute("branch", this.branchService.getBranchById(id).orElse(null));
+    	
         return "createBranch";
     }
 
+    @RequestMapping(value = "/deleteBranch/{id}",method=RequestMethod.GET)
+    public String deleteBranch(@PathVariable("id") int id,Model model)
+    {
+    	branchService.deleteBranch(branchService.getBranchById(id).orElse(null));
+    	List<Branch> list=branchService.getAllBranches();
+    	model.addAttribute("list", list);
+    	return "listBranch";
+    }
 }
