@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.navbar-nav{
+	float: right;
+}
+
+
+footer {
+	position: absolute;
+	margin-top: 35px;
+    left: 0;
+    bottom: 0%;
+    height: 100px;
+    width: 100%;
+    background-color: #212529;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 15px;
+}
+
+footer>p{
+	margin-bottom: 0px;
+}
