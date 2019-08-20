@@ -8,25 +8,25 @@
 <title>Create Account</title>
 </head>
 <body>
-	<form:form action="addAccount" modelAttribute="account">
+	<form:form action="createAccount" modelAttribute="account">
 		<table>
 			<tr>
-				<td><form:label path="customerId">
-						<spring:message text="customerId" />
+				<td><form:label path="customer.customerId">
+						<spring:message text="Customer ID" />
 					</form:label></td>
-				<td><form:input path="customerId" /></td>
+				<td><form:input path="customer.customerId" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="balance">
-						<spring:message text="balance" />
+						<spring:message text="Balance" />
 					</form:label></td>
 				<td><form:input path="balance" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="branchId">
-						<spring:message text="branchId" />
+				<td><form:label path="branch.branchId">
+						<spring:message text="Branch Id" />
 					</form:label></td>
-				<td><form:input path="branchId" /></td>
+				<td><form:input path="branch.branchId" /></td>
 			</tr>
 				
 		</table>
