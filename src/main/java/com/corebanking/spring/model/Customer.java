@@ -1,5 +1,6 @@
 package com.corebanking.spring.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -66,7 +67,7 @@ public class Customer
 	public void setSalary(long salary) {
 		this.salary = salary;
 	}
-	@OneToOne(mappedBy = "customer")
+	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
 	private Account account;
 	public int getCustomerId() {
 		return customerId;

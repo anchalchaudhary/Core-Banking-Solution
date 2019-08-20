@@ -2,6 +2,7 @@ package com.corebanking.spring.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -123,9 +124,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Customer getCustomerDetails(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<Customer> getCustomerDetails(int id) {
+
+		Optional<Customer> customer = customerRepository.findById(id);
+		return customer;
 	}
 
 	@Override
@@ -146,5 +148,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return false;
 	}
 
-
+	@Override
+	@Transactional
+	public boolean updateCustomer(Customer customer) {
+		try {
+			customerRepository.save(customer);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
+	}
 }
