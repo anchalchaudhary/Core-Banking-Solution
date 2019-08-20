@@ -57,6 +57,8 @@
 
 <a href="listLoan">list loan</a>
 
+<a href="transfer">transfer</a>
+
 
 </body>
 </html>

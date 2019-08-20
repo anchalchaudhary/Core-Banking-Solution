@@ -16,12 +16,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.corebanking.spring.model.Customer;
+import com.corebanking.spring.model.Transaction;
 import com.corebanking.spring.service.EmployeeService;
+import com.corebanking.spring.service.TransactionService;
 
 @Controller
 public class EmployeeController {
 
+	
 	private EmployeeService employeeService;
+	@Autowired
+	private TransactionService transactionService;
 
 	public EmployeeController() {
 
@@ -97,4 +102,17 @@ public class EmployeeController {
 		return modelAndView;	
 	}
 
+	@RequestMapping(value="/transfer", method = RequestMethod.GET)
+	public String showTransferForm(Model model)
+	{
+		model.addAttribute("transfer", new Transaction());
+		return "transfer";
+	}
+	
+	@RequestMapping(value="/transfer",method = RequestMethod.POST)
+	public String addTransfer(@ModelAttribute("transfer") Transaction transaction)
+	{
+		transactionService.transfer(transaction);
+		return "redirect:/home";
+	}
 }
