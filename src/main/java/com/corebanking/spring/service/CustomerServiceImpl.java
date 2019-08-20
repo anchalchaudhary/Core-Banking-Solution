@@ -26,5 +26,14 @@ public class CustomerServiceImpl implements CustomerService{
 		Optional<Customer> customer = customerRepository.findById(id);
 		return customer;
 	}
+	@Override
+	public boolean deleteCustomer(Customer customer) {
 
+		try {
+			customerRepository.delete(customer);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
+	}
 }

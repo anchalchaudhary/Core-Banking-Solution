@@ -57,8 +57,12 @@
 
 <a href="listLoan">list loan</a>
 
+
 <a href="transfer">transfer</a>
 
+
+
+<a href="listCustomers">View all Customers</a>
 
 </body>
 </html>

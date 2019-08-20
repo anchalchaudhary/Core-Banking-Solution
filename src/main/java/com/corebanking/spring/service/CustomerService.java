@@ -7,4 +7,6 @@ import com.corebanking.spring.model.Customer;;
 public interface CustomerService {
     public Optional<Customer> getCustomerById(int id);
 
+	public boolean deleteCustomer(Customer orElse);
+
 }

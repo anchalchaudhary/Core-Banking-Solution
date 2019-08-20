@@ -1,22 +1,29 @@
 package com.corebanking.spring.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import com.corebanking.spring.model.Account;
+import com.corebanking.spring.model.Branch;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.corebanking.spring.model.Customer;
+
 import com.corebanking.spring.model.Transaction;
+
+import com.corebanking.spring.service.CustomerService;
+
 import com.corebanking.spring.service.EmployeeService;
 import com.corebanking.spring.service.TransactionService;
 
@@ -26,7 +33,11 @@ public class EmployeeController {
 	
 	private EmployeeService employeeService;
 	@Autowired
+
 	private TransactionService transactionService;
+
+
+	private CustomerService customerService;
 
 	public EmployeeController() {
 
@@ -37,10 +48,11 @@ public class EmployeeController {
 	}
 
 	@Autowired(required = true)
-	public void setCustomerService(EmployeeService employeeService) {
+	public void setEmployeeService(EmployeeService employeeService) {
 
 		this.employeeService = employeeService;
 	}
+
 	@RequestMapping(value = {"/","/home"} , method = RequestMethod.GET)
 	public ModelAndView showHome(HttpServletResponse response) throws IOException {
 
@@ -56,21 +68,59 @@ public class EmployeeController {
 		modelAndView.addObject("customer", new Customer());
 		return modelAndView;
 	}
-	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
+	@RequestMapping(value = {"/addCustomer","updateCustomer/addCustomer"}, method = RequestMethod.POST)
 	public ModelAndView addNewCustomer(@ModelAttribute Customer customer, BindingResult bindingResult) {
 
 		ModelAndView modelAndView = new ModelAndView("redirect:/home");
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("error");
 		}
-		boolean isAdded = employeeService.addCustomer(customer);
-		if(isAdded) {
-			modelAndView.addObject("message", "New Customer successfully added");
+		if(customer.getCustomerId()==0) {
+			boolean isAdded = employeeService.addCustomer(customer);
+			if(isAdded) {
+				modelAndView.addObject("message", "New Customer successfully added");
+			} else {
+				return new ModelAndView("error");
+			}
 		} else {
-			return new ModelAndView("error");
+			employeeService.updateCustomer(customer);
 		}
 		return modelAndView;
 	}
+
+	@RequestMapping(value = "/listCustomers", method = RequestMethod.GET)
+	public String showCustomerList(Model model) {
+		List<Customer> list = employeeService.getAllCustomers();
+		for(Customer customer:list)
+		{
+			System.out.println(customer.getName()+" "+customer.getCustomerId());
+
+		}
+		model.addAttribute("list", list);
+		return "listCustomers";
+	}
+
+	@RequestMapping(value = "/viewCustomer/{id}", method = RequestMethod.GET)
+	public String viewCustomer(@PathVariable("id") int id, Model model) {
+		model.addAttribute("customer", this.employeeService.getCustomerDetails(id).orElse(null));
+		return "viewCustomer";	
+	}
+
+	@RequestMapping(value = "/updateCustomer/{id}", method = RequestMethod.GET)
+	public String updateCustomer(@PathVariable("id") int id, Model model) {
+		model.addAttribute("customer", this.customerService.getCustomerById(id).orElse(null));
+
+		return "createCustomer";
+	}
+	
+	@RequestMapping(value = "/deleteCustomer/{id}",method=RequestMethod.GET)
+    public String deleteCustomer(@PathVariable("id") int id,Model model)
+    {
+    	customerService.deleteCustomer(customerService.getCustomerById(id).orElse(null));
+    	List<Customer> list=employeeService.getAllCustomers();
+    	model.addAttribute("list", list);
+    	return "listCustomers";
+    }
 
 	@RequestMapping(value = "/createAccount" , method = RequestMethod.GET)
 	public ModelAndView showAccountCreation(Model model)
@@ -80,10 +130,11 @@ public class EmployeeController {
 		modelAndView.addObject("account", new Account());
 		return modelAndView;
 	}
+	
 	@RequestMapping(value = "/createAccount",method = RequestMethod.POST)
 	public ModelAndView createAccount(@ModelAttribute("account") Account account, BindingResult bindingResult)
 	{
-		
+
 		ModelAndView modelAndView = new ModelAndView("redirect:/home");
 		if(bindingResult.hasErrors()) {
 			return new ModelAndView("error");
