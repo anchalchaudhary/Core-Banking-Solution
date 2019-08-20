@@ -26,7 +26,7 @@ public class Account
 		this.accountId = accountId;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
     @JoinColumn(name="customerId")
 	private Customer customer;
 	private String accountno;
