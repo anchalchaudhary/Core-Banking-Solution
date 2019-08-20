@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 import com.corebanking.spring.model.Customer;
 
 @Repository
-public interface AccountRepository extends CrudRepository<Account, Integer>{
+
+
+
+public interface AccountRepository extends CrudRepository<Account, Integer>
+{
+
 
 }

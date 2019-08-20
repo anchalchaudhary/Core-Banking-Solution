@@ -25,7 +25,11 @@ public class EmployeeController {
 
 	private EmployeeService employeeService;
 
+
 	
+
+
+
 	public EmployeeController() {
 
 	}
@@ -38,10 +42,17 @@ public class EmployeeController {
 
 		this.employeeService = employeeService;
 	}
+
 	
 	@RequestMapping(value = {"/","/home"} , method = RequestMethod.GET)
 	public ModelAndView showHome(HttpServletResponse response) throws IOException {
 		
+
+
+	@RequestMapping(value = {"/","/home"} , method = RequestMethod.GET)
+	public ModelAndView showHome(HttpServletResponse response) throws IOException {
+
+
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("home");
 		return modelAndView;
@@ -53,7 +64,11 @@ public class EmployeeController {
 		modelAndView.addObject("customer", new Customer());
 		return modelAndView;
 	}
+
 	
+
+
+
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
 	public ModelAndView addNewCustomer(@ModelAttribute Customer customer, BindingResult bindingResult) {
 
@@ -63,8 +78,13 @@ public class EmployeeController {
 		}
 
 
+
 		boolean isAdded = employeeService.addCustomer(customer);
 		
+
+		boolean isAdded = employeeService.addCustomer(customer);
+
+
 		if(isAdded) {
 			modelAndView.addObject("message", "New Customer successfully added");
 		} else {
@@ -72,20 +92,37 @@ public class EmployeeController {
 		}
 		return modelAndView;
 	} 
-//		return "redirect:/listcustomer";
-//	}
+
+
+
 
 	@RequestMapping(value = "/createAccount" , method = RequestMethod.GET)
-	public String showAccountCreation(Model model)
+	public ModelAndView showAccountCreation(Model model)
 	{
-		return "createAccount";
+		ModelAndView modelAndView = new ModelAndView("createAccount");
+		modelAndView.addObject("headermessage", "Add Account Details");
+		modelAndView.addObject("account", new Account());
+		return modelAndView;
 	}
-	@RequestMapping(value = "/addAccount",method = RequestMethod.POST)
-	public String createAccount(@ModelAttribute("account") Account account)
+	@RequestMapping(value = "/createAccount",method = RequestMethod.POST)
+	public ModelAndView createAccount(@ModelAttribute("account") Account account)
 	{
-		this.employeeService.createAccount(account);
-		return "redirect:/listcustomer";
+		
+		ModelAndView modelAndView = new ModelAndView("redirect:/home");
+		if(bindingResult.hasErrors()) {
+			return new ModelAndView("error");
+		}
+		boolean isRegistered = employeeService.isRegistered(account.getCustomer());
+		if(isRegistered) {
+			boolean isAdded = employeeService.createAccount(account);
+			if(isAdded) {
+				modelAndView.addObject("message", "New Customer Account successfully added");
+			} else {
+				return new ModelAndView("error");
+			}
+		} else {
+			return new ModelAndView("error");
+		}
+		return modelAndView;	
 	}
-
-
 }

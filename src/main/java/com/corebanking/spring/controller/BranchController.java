@@ -43,27 +43,28 @@ public class BranchController
 			return new ModelAndView("error");
 		}
 
-		if(branch.getId()==0)
+
+
+
+		if(branch.getBranchId()==0)
+
 		{
 			branchService.addBranch(branch);
 		}
 		else
 		{
 			branchService.updateBranch(branch);
-		}
-		
-		
-		return modelAndView;
-	} 
-	
-    @RequestMapping(value = "/listBranch", method = RequestMethod.GET)
 	public String showListBranches(Model model)
 	{
     	
     	List<Branch> list=branchService.getAllBranches();
     	for(Branch branch:list)
     	{
+
     		System.out.println(branch.getName()+" "+branch.getId());
+
+    		System.out.println(branch.getName()+" "+branch.getBranchId());
+
     	}
     	model.addAttribute("list", list);
     	return "listBranch";

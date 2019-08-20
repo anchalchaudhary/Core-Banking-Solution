@@ -5,12 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
+import javax.persistence.OneToOne;
+
+
 @Entity
 public class Customer 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+
+
+
+	private int customerId;
+
 	private String name;
 	private String phone;
 	private String address;
@@ -30,12 +38,15 @@ public class Customer
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
+
+
+
+
+
+
+
+
 	public String getName() {
 		return name;
 	}
@@ -68,6 +79,23 @@ public class Customer
 		this.salary = salary;
 	}
 	
+
+
+	@OneToOne(mappedBy = "customer")
+	private Account account;
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+	public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
 	
 
 }
