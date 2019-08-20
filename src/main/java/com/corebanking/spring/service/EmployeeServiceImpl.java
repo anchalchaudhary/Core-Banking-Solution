@@ -10,16 +10,25 @@ import com.corebanking.spring.repository.AccountRepository;
 import com.corebanking.spring.repository.BranchRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
+
+import com.corebanking.spring.model.Account;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.corebanking.spring.model.Account;
 import com.corebanking.spring.model.Branch;
+
 import com.corebanking.spring.model.Customer;
 import com.corebanking.spring.repository.CustomerRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+
+
+	private CustomerRepository customerRepository;
 
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -48,11 +57,29 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	@Qualifier(value = "accountRepository")
+
 	private AccountRepository accountRepository;
 
 	public EmployeeServiceImpl() {
 
 	}
+
+	
+
+	@Autowired
+	public EmployeeServiceImpl(CustomerRepository customerRepository) {
+		super();
+		this.customerRepository = customerRepository;
+	}
+	
+
+	/*
+	 * @Autowired public EmployeeServiceImpl(CustomerRepository customerRepository)
+	 * { super(); this.customerRepository = customerRepository; } public
+	 * EmployeeServiceImpl(AccountRepository accountRepository) { super();
+	 * this.accountRepository = accountRepository; }
+	 */	
+
 
 	@Autowired 
 	public EmployeeServiceImpl(CustomerRepository customerRepository){ 
@@ -63,6 +90,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		super();
 		this.accountRepository = accountRepository; 
 	}
+
 
 	@Override
 	public void branchManagement() {
@@ -84,6 +112,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public boolean createAccount(Account account) {
 		try {
+
+
+
+
+
+
+
+
+
+
+
+
+		
+			
+
+
+
+
 			//			BranchService branchService = new BranchServiceImpl();
 			Branch branch2 = account.getBranch();
 			Branch branch = branchServiceImpl.getBranchById(branch2.getBranchId()).orElse(null);
@@ -94,10 +140,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 			Account account1 = new Account();
 			account1=accountRepository.save(account);
 			account1.setAccountno("GL" + account1.getAccountId());
+
 			accountRepository.save(account1);
 			return true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
+
 			return false;
 		}
 	}
@@ -128,6 +176,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return list;
 	}
 
+
+
 	@Override
 	public boolean isRegistered(Customer customerId) {
 
@@ -135,5 +185,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return true;
 		return false;
 	}
+
 
 }

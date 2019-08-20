@@ -26,6 +26,11 @@ public class EmployeeController {
 
 
 
+
+
+
+
+
 	public EmployeeController() {
 
 	}
@@ -41,11 +46,21 @@ public class EmployeeController {
 	}
 
 
-	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
+
+
+
+
+
 
 	@RequestMapping(value = {"/","/home"} , method = RequestMethod.GET)
 
 	public ModelAndView showHome(HttpServletResponse response) throws IOException {
+
+
+
+
+
+
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("home");
@@ -60,6 +75,10 @@ public class EmployeeController {
 		return modelAndView;
 	}
 
+	
+
+
+
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
 	public ModelAndView addNewCustomer(@ModelAttribute Customer customer, BindingResult bindingResult) {
 
@@ -68,10 +87,18 @@ public class EmployeeController {
 			return new ModelAndView("error");
 		}
 
+
+
+		boolean isAdded = employeeService.addCustomer(customer);
+		
+
 		boolean isAdded = employeeService.addCustomer(customer);
 
 
-		if (isAdded) {
+
+
+
+
 
 		if(isAdded) {
 
@@ -85,19 +112,22 @@ public class EmployeeController {
 
 
 
-	@RequestMapping(value = "/createAccount", method = RequestMethod.GET)
-	public String showAccountCreation(Model model) {
-		return "createAccount";
-	}
-
-	@RequestMapping(value = "/addAccount", method = RequestMethod.POST)
-	public String createAccount(@ModelAttribute("account") Account account) {
-		this.employeeService.createAccount(account);
-		return "redirect:/listcustomer";
-	}
 
 
-	} 
+
+
+
+
+
+
+
+	
+
+
+	
+
+
+
 
 	@RequestMapping(value = "/createAccount" , method = RequestMethod.GET)
 	public ModelAndView showAccountCreation(Model model)

@@ -14,13 +14,22 @@
 		<c:if test="${!empty branch.name}">
 	<tr>
 		<td>
+
+
+
 			<form:label path="branchId">
+
 				<spring:message text="ID"/>
 			</form:label>
 		</td>
 		<td>
+
+
+
+
 			<form:input path="branchId" readonly="true" size="8"  disabled="true" />
 			<form:hidden path="branchId" />
+
 		</td> 
 	</tr>
 	</c:if>

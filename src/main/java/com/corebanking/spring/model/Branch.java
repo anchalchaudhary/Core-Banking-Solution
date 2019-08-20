@@ -3,7 +3,10 @@ package com.corebanking.spring.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+
+
 import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,11 +18,31 @@ public class Branch
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	private int id;
+
 	private int branchId;
+
 	private String address;
 	private String name;
 	private String ifsc;
 	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
 	@OneToOne(fetch = FetchType.EAGER)
 	private Employee empId;
 	
@@ -43,6 +66,7 @@ public class Branch
 
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
+
 	}
 
 
