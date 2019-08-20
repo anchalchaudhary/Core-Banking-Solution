@@ -17,5 +17,11 @@
 
 <a href="listBranch">Branches</a>
 
+
+<a href="addLoan">add Loan</a>
+
+
+<a href="listLoan">list loan</a>
+
 </body>
 </html>
