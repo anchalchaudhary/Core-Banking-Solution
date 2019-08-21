@@ -38,41 +38,8 @@ public class Account
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 	@OneToOne(cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
-
     @JoinColumn(name="customerId")
 	private Customer customer;
 	private String accountno;
@@ -87,7 +54,6 @@ public class Account
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-
 	}
 	public String getAccountno() {
 		return accountno;
@@ -101,13 +67,6 @@ public class Account
 	public void setBalance(long balance) {
 		this.balance = balance;
 	}
-
-
-
-
-
-
-
 	public Branch getBranch() {
 		return branch;
 	}

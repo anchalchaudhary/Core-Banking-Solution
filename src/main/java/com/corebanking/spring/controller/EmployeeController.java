@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.corebanking.spring.model.Customer;
-
+import com.corebanking.spring.model.PersonalTransaction;
 import com.corebanking.spring.model.Transaction;
-
+import com.corebanking.spring.service.AccountService;
 import com.corebanking.spring.service.CustomerService;
 
 import com.corebanking.spring.service.EmployeeService;
@@ -36,9 +36,12 @@ public class EmployeeController {
 
 	private TransactionService transactionService;
 
-
+	@Autowired
 	private CustomerService customerService;
 
+	@Autowired(required = true)
+	private AccountService accountService;
+	
 	public EmployeeController() {
 
 	}
@@ -68,24 +71,28 @@ public class EmployeeController {
 		modelAndView.addObject("customer", new Customer());
 		return modelAndView;
 	}
+	
 	@RequestMapping(value = {"/addCustomer","updateCustomer/addCustomer"}, method = RequestMethod.POST)
 	public ModelAndView addNewCustomer(@ModelAttribute Customer customer, BindingResult bindingResult) {
 
-		ModelAndView modelAndView = new ModelAndView("redirect:/home");
+//		ModelAndView modelAndView = new ModelAndView("redirect:/home");
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("error");
 		}
 		if(customer.getCustomerId()==0) {
 			boolean isAdded = employeeService.addCustomer(customer);
 			if(isAdded) {
-				modelAndView.addObject("message", "New Customer successfully added");
+				int customerId = customer.getCustomerId();
+//				modelAndView.addObject("message", "New Customer successfully added");
+				return new ModelAndView("redirect:/viewCustomer/"+customerId);
 			} else {
 				return new ModelAndView("error");
 			}
 		} else {
+			int customerId = customer.getCustomerId();
 			employeeService.updateCustomer(customer);
+			return new ModelAndView("redirect:/viewCustomer/"+customerId);
 		}
-		return modelAndView;
 	}
 
 	@RequestMapping(value = "/listCustomers", method = RequestMethod.GET)
@@ -102,7 +109,11 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/viewCustomer/{id}", method = RequestMethod.GET)
 	public String viewCustomer(@PathVariable("id") int id, Model model) {
+		
+//		Customer customer = this.employeeService.getCustomerDetails(id).orElse(null);
 		model.addAttribute("customer", this.employeeService.getCustomerDetails(id).orElse(null));
+//		model.addAttribute("account", this.employeeService.getCustomerAccountDetails(customer));
+		
 		return "viewCustomer";	
 	}
 
@@ -122,48 +133,113 @@ public class EmployeeController {
     	return "listCustomers";
     }
 
-	@RequestMapping(value = "/createAccount" , method = RequestMethod.GET)
-	public ModelAndView showAccountCreation(Model model)
+	@RequestMapping(value = "/createAccount/{id}" , method = RequestMethod.GET)
+	public ModelAndView showAccountCreation(@PathVariable("id") int id, Model model)
 	{
 		ModelAndView modelAndView = new ModelAndView("createAccount");
 		modelAndView.addObject("headermessage", "Add Account Details");
+		modelAndView.addObject("customerId", id);
 		modelAndView.addObject("account", new Account());
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/createAccount",method = RequestMethod.POST)
-	public ModelAndView createAccount(@ModelAttribute("account") Account account, BindingResult bindingResult)
+	@RequestMapping(value = "/createAccount/{id}",method = RequestMethod.POST)
+	public ModelAndView createAccount(@PathVariable("id") int customerId, @ModelAttribute("account") Account account, BindingResult bindingResult)
 	{
 
-		ModelAndView modelAndView = new ModelAndView("redirect:/home");
+		ModelAndView modelAndView = new ModelAndView("redirect:/viewCustomer/"+customerId);
 		if(bindingResult.hasErrors()) {
 			return new ModelAndView("error");
 		}
-		boolean isRegistered = employeeService.isRegistered(account.getCustomer());
-		if(isRegistered) {
+		Customer customer = customerService.getCustomerById(customerId).orElse(null);
+		account.setCustomer(customer);
+//		boolean isRegistered = employeeService.isRegistered(account.getCustomer());
+//		if(isRegistered) {
 			boolean isAdded = employeeService.createAccount(account);
 			if(isAdded) {
 				modelAndView.addObject("message", "New Customer Account successfully added");
 			} else {
 				return new ModelAndView("error");
 			}
-		} else {
-			return new ModelAndView("error");
-		}
+//		} else {
+//			return new ModelAndView("error");
+//		}
 		return modelAndView;	
 	}
 
-	@RequestMapping(value="/transfer", method = RequestMethod.GET)
-	public String showTransferForm(Model model)
+	@RequestMapping(value="/transfer/{fromAccountId}", method = RequestMethod.GET)
+	public ModelAndView showTransferForm(@PathVariable("fromAccountId") int fromAccountId)
 	{
-		model.addAttribute("transfer", new Transaction());
-		return "transfer";
+		ModelAndView modelAndView = new ModelAndView("transfer");
+		modelAndView.addObject("fromAccountId", fromAccountId);
+		modelAndView.addObject("transfer", new Transaction());
+		return modelAndView;
 	}
 	
-	@RequestMapping(value="/transfer",method = RequestMethod.POST)
-	public String addTransfer(@ModelAttribute("transfer") Transaction transaction)
+	@RequestMapping(value="/transfer/transfer/{fromAccountId}",method = RequestMethod.POST)
+	public ModelAndView addTransfer(@PathVariable("fromAccountId") int fromAccountId, @ModelAttribute("transfer") Transaction transaction, BindingResult bindingResult)
 	{
+		Account fromAccount = accountService.getAccountById(fromAccountId);
+		transaction.setFromaccount(fromAccount);
+		ModelAndView modelAndView = new ModelAndView("redirect:/viewCustomer/"+fromAccount.getCustomer().getCustomerId());
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView("error");
+		}
 		transactionService.transfer(transaction);
-		return "redirect:/home";
+		return modelAndView;
+	}
+	
+
+	
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public String dashboard(Model model) {
+		return "dashboard";
+	}
+
+	@RequestMapping(value="/depositMoney/{id}", method = RequestMethod.GET)
+	public ModelAndView showDepositMoneyForm(@PathVariable("id")int id) {
+		ModelAndView modelAndView = new ModelAndView("depositMoney");
+		modelAndView.addObject("accountId", id);
+		modelAndView.addObject("personalTransaction", new PersonalTransaction());
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/depositMoney/depositMoney/{id}", method = RequestMethod.POST)
+	public ModelAndView depositMoney(@PathVariable("id") int accountId, @ModelAttribute("personalTransaction") PersonalTransaction personalTransaction, BindingResult bindingResult) {
+		
+		Account account = accountService.getAccountById(accountId);
+		int customerId = account.getCustomer().getCustomerId();
+		ModelAndView modelAndView = new ModelAndView("redirect:/viewCustomer/"+customerId);
+		personalTransaction.setAccount(account);
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView("error");
+		}
+		
+		transactionService.deposit(personalTransaction);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/withdrawMoney/{id}", method = RequestMethod.GET)
+	public ModelAndView showWithdrawMoneyForm(@PathVariable("id")int id) {
+		ModelAndView modelAndView = new ModelAndView("withdrawMoney");
+		modelAndView.addObject("accountId", id);
+		modelAndView.addObject("personalTransaction", new PersonalTransaction());
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/withdrawMoney/withdrawMoney/{id}", method = RequestMethod.POST)
+	public ModelAndView withdrawMoney(@PathVariable("id") int accountId, @ModelAttribute("personalTransaction") PersonalTransaction personalTransaction, BindingResult bindingResult) {
+		
+		Account account = accountService.getAccountById(accountId);
+		int customerId = account.getCustomer().getCustomerId();
+		ModelAndView modelAndView = new ModelAndView("redirect:/viewCustomer/"+customerId);
+		personalTransaction.setAccount(account);
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView("error");
+		}
+		
+		transactionService.withdraw(personalTransaction);
+		return modelAndView;
+
 	}
 }

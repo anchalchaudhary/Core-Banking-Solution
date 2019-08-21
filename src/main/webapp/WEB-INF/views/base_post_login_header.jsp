@@ -8,9 +8,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<ul class="nav navbar-nav ml-auto">
-				<li class="active"><a class="nav-item nav-link" href="addCustomer"><h5>Create Customer</h5></a>
+				<li class="active"><a class="nav-item nav-link" href="dashboard"><h5>Dashboard</h5></a>
 				</li>
-				<li><a class="nav-item nav-link" href="#"><h5>View Customer</h5></a></li>
+				<li><a class="nav-item nav-link" href="logout"><h5>Logout</h5></a></li>
 			</ul>
 		</div>
 	</nav>

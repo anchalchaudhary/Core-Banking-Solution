@@ -15,9 +15,6 @@ import org.springframework.stereotype.Service;
 import com.corebanking.spring.model.Account;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-
-import com.corebanking.spring.model.Account;
 import com.corebanking.spring.model.Branch;
 
 import com.corebanking.spring.model.Customer;
@@ -117,11 +114,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	}
 
-	@Override
-	public Account getCustomerAccountDetails(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Account getCustomerAccountDetails(Customer customer) {
+//
+//		Account account = new Account();
+//		account.setAccountId(customer.getAccount().getAccountId());
+//		account.setAccountno(customer.getAccount().getAccountno());
+//		account.setBalance(customer.getAccount().getBalance());
+//		account.setBranch(customer.getAccount().getBranch());
+//		
+//		return account;
+//	}
 
 	@Override
 	public Optional<Customer> getCustomerDetails(int id) {

@@ -13,7 +13,7 @@ public interface EmployeeService {
 	public boolean createAccount(Account account);
 	public void transactionManagement();
 	public Optional<Customer> getCustomerDetails(int id);
-	public Account getCustomerAccountDetails(int id);
+//	public Account getCustomerAccountDetails(Customer customer);
 	public List<Customer> getAllCustomers();
 
 
