@@ -8,13 +8,13 @@
 <title>Create Account</title>
 </head>
 <body>
-	<form:form action="createAccount" modelAttribute="account">
+	<form:form action="../createAccount/${customerId }" modelAttribute="account">
 		<table>
 			<tr>
-				<td><form:label path="customer.customerId">
+				<%-- <td><form:label path="customer.customerId">
 						<spring:message text="Customer ID" />
-					</form:label></td>
-				<td><form:input path="customer.customerId" /></td>
+					</form:label></td> --%>
+				<td><form:hidden path="customer.customerId" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="balance">

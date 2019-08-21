@@ -8,7 +8,7 @@
 <title>Customer Details</title>
 </head>
 <body>
-	<c:if test="${!empty customer.name}">
+	<c:if test="${customer.customerId ne 0}">
 		<table>
 			<tr>
 				<th>Customer ID</th>
@@ -66,7 +66,15 @@
 				<th>Branch IFSC</th>
 				<td>${customer.account.branch.ifsc}</td>
 			</tr>
+			<tr>
+				<td><a href="<c:url value='/depositMoney/${customer.account.accountId}' />" >Deposit Money</a></td>
+				<td><a href="<c:url value='/withdrawMoney/${customer.account.accountId}' />" >Withdraw Money</a></td>
+			</tr>
 		</table>
+	</c:if>
+	<c:if test="${empty customer.account.accountId}">
+		<h4>No Account Added</h4>
+		<a href="../createAccount/${customer.customerId }">Add Account</a>
 	</c:if>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <body>
 	<form:form action="addCustomer" modelAttribute="customer">
 		<table>
-			<c:if test="${!empty customer.customerId}">
+			<c:if test="${customer.customerId ne 0}">
 				<tr>
 					<td><form:label path="customerId">
 							<spring:message text="Customer ID" />
