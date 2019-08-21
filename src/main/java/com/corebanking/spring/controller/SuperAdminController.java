@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.corebanking.spring.model.Branch;
 import com.corebanking.spring.model.Employee;
 import com.corebanking.spring.model.SuperAdmin;
 import com.corebanking.spring.service.SuperAdminService;
+
+
+
+
 
 @Controller
 public class SuperAdminController {
@@ -79,17 +82,7 @@ public class SuperAdminController {
 		}
 	}
 	
-	@RequestMapping("/sure-logout")
-	public ModelAndView sureLogout(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("in sure logout");
-		mv = new ModelAndView();
-		mv.setViewName("sure_logout");
-		
-		return mv;
-
-
-	}
-
+	
 	@RequestMapping("/sure-logout")
 	public ModelAndView sureLogout(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("in sure logout");
@@ -192,7 +185,5 @@ public class SuperAdminController {
 	}
 }
 
-		mv.addObject("list", list);
-		return mv;
-	}
-}
+
+		
