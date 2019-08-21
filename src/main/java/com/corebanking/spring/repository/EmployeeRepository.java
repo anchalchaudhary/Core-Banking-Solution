@@ -8,4 +8,6 @@ import com.corebanking.spring.model.Employee;
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Integer>{
 
+	Employee findEmployeeByEmpUserName(String empUserName);
+
 }
