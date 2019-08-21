@@ -15,11 +15,6 @@ import org.springframework.stereotype.Service;
 import com.corebanking.spring.model.Account;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
-import org.springframework.stereotype.Service;
-
-import com.corebanking.spring.model.Account;
 import com.corebanking.spring.model.Branch;
 
 import com.corebanking.spring.model.Customer;

@@ -1,6 +1,7 @@
 package com.corebanking.spring.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,9 +13,9 @@ public class Transaction
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Account fromaccount;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Account toaccount;
 	private long amount;
 	

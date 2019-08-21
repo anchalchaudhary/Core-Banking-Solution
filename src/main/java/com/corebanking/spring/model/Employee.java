@@ -38,4 +38,10 @@ public class Employee {
 	public void setEmpPassword(String empPassword) {
 		this.empPassword = empPassword;
 	}
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empUserName=" + empUserName + ", empPassword="
+				+ empPassword + "]";
+	}
+	
 }

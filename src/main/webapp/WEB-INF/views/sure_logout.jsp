@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<%
 		if (session.getAttribute("username") == null) {
 			response.sendRedirect("super-admin-login");
@@ -14,6 +15,7 @@
 			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
 		}
 	%>
-	<jsp:include page="include-logout.jsp" />
+	<h3>Press Again to Logout</h3>
+	<a href="superadmin-logout">Logout</a>
 </body>
 </html>

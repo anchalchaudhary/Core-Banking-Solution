@@ -1,1 +1,1 @@
-<a href="superadmin-logout">Logout</a>
+<a href="sure-logout">Logout</a>
