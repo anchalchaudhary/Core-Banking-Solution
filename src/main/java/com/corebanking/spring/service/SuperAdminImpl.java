@@ -2,12 +2,14 @@ package com.corebanking.spring.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.corebanking.spring.model.Branch;
 import com.corebanking.spring.model.Employee;
 import com.corebanking.spring.repository.EmployeeRepository;
 
@@ -19,9 +21,10 @@ public class SuperAdminImpl implements SuperAdminService {
 	public EmployeeRepository getEmploRepository() {
 		return emploRepository;
 	}
-	
+
 	@Autowired
 	public void setEmploRepository(EmployeeRepository emploRepository) {
+		System.out.println("Hey There");
 		this.emploRepository = emploRepository;
 	}
 
@@ -68,9 +71,20 @@ public class SuperAdminImpl implements SuperAdminService {
 	@Override
 	@Transactional
 	public List<Employee> listEmployee() {
+		System.out.println("Employee Repo:"+emploRepository);
 		List<Employee> list = new ArrayList<Employee>();
-		emploRepository.findAll().forEach(e -> list.add(e));
+		emploRepository.findAll().forEach(e -> list.add(e));		
+		if (list != null) {
+			System.out.println("not null");
+		}
 		return list;
 	}
+
+	@Override
+	public Optional<Employee> getEmployeeById(int id) {
+		Optional<Employee> employee = emploRepository.findById(id);
+		return employee;
+	}
+	
 
 }

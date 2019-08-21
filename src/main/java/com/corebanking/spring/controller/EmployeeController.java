@@ -30,13 +30,15 @@ import com.corebanking.spring.service.TransactionService;
 @Controller
 public class EmployeeController {
 
-	
 	private EmployeeService employeeService;
 	@Autowired
 
 	private TransactionService transactionService;
 
+
 	@Autowired
+
+
 	private CustomerService customerService;
 
 	@Autowired(required = true)
@@ -56,7 +58,7 @@ public class EmployeeController {
 		this.employeeService = employeeService;
 	}
 
-	@RequestMapping(value = {"/","/home"} , method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public ModelAndView showHome(HttpServletResponse response) throws IOException {
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -73,18 +75,20 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = {"/addCustomer","updateCustomer/addCustomer"}, method = RequestMethod.POST)
+
 	public ModelAndView addNewCustomer(@ModelAttribute Customer customer, BindingResult bindingResult) {
 
 //		ModelAndView modelAndView = new ModelAndView("redirect:/home");
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("error");
 		}
-		if(customer.getCustomerId()==0) {
+		if (customer.getCustomerId() == 0) {
 			boolean isAdded = employeeService.addCustomer(customer);
+
 			if(isAdded) {
 				int customerId = customer.getCustomerId();
 //				modelAndView.addObject("message", "New Customer successfully added");
-				return new ModelAndView("redirect:/viewCustomer/"+customerId);
+			return new ModelAndView("redirect:/viewCustomer/"+customerId);
 			} else {
 				return new ModelAndView("error");
 			}
@@ -98,9 +102,8 @@ public class EmployeeController {
 	@RequestMapping(value = "/listCustomers", method = RequestMethod.GET)
 	public String showCustomerList(Model model) {
 		List<Customer> list = employeeService.getAllCustomers();
-		for(Customer customer:list)
-		{
-			System.out.println(customer.getName()+" "+customer.getCustomerId());
+		for (Customer customer : list) {
+			System.out.println(customer.getName() + " " + customer.getCustomerId());
 
 		}
 		model.addAttribute("list", list);
@@ -112,9 +115,10 @@ public class EmployeeController {
 		
 //		Customer customer = this.employeeService.getCustomerDetails(id).orElse(null);
 		model.addAttribute("customer", this.employeeService.getCustomerDetails(id).orElse(null));
+
 //		model.addAttribute("account", this.employeeService.getCustomerAccountDetails(customer));
-		
-		return "viewCustomer";	
+			
+		return "viewCustomer";
 	}
 
 	@RequestMapping(value = "/updateCustomer/{id}", method = RequestMethod.GET)
@@ -141,8 +145,8 @@ public class EmployeeController {
 		modelAndView.addObject("customerId", id);
 		modelAndView.addObject("account", new Account());
 		return modelAndView;
-	}
 	
+	}	
 	@RequestMapping(value = "/createAccount/{id}",method = RequestMethod.POST)
 	public ModelAndView createAccount(@PathVariable("id") int customerId, @ModelAttribute("account") Account account, BindingResult bindingResult)
 	{
@@ -156,11 +160,12 @@ public class EmployeeController {
 //		boolean isRegistered = employeeService.isRegistered(account.getCustomer());
 //		if(isRegistered) {
 			boolean isAdded = employeeService.createAccount(account);
-			if(isAdded) {
+			if (isAdded) {
 				modelAndView.addObject("message", "New Customer Account successfully added");
 			} else {
 				return new ModelAndView("error");
 			}
+
 //		} else {
 //			return new ModelAndView("error");
 //		}
@@ -184,13 +189,11 @@ public class EmployeeController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/viewCustomer/"+fromAccount.getCustomer().getCustomerId());
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("error");
-		}
+			}
 		transactionService.transfer(transaction);
 		return modelAndView;
 	}
-	
 
-	
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public String dashboard(Model model) {
 		return "dashboard";
@@ -242,4 +245,5 @@ public class EmployeeController {
 		return modelAndView;
 
 	}
+
 }
