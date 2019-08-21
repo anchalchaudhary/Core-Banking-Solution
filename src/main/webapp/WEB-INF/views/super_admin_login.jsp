@@ -21,7 +21,7 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#"><h4>Admin Panel</h4></a>
 		</nav>
 	</header>
@@ -56,6 +56,9 @@
 			</div>
 		</div>
 
+	</div>
+	<div>
+		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
 
 </body>
