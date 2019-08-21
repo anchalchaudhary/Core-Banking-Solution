@@ -2,16 +2,11 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-
 <title>Insert title here</title>
-<title>Admin Panel</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -29,52 +24,45 @@
 	crossorigin="anonymous"></script>
 <link href="<c:url value='/assets/css/base_pre_login.css' />"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="<c:url value='/assets/css/super_admin_post_login.css' />" />
 <link
 	href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
 	rel="stylesheet">
 
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark">
-			<a class="navbar-brand" href="#"><h4>Admin Panel</h4></a>
-		</nav>
-	</header>
+	<%@include file="check_session.jsp" %>
+	<jsp:include page="include-superadmin(dashboard).jsp"></jsp:include>
 	<div class="container">
-		<br /> <br /> <br />
-		<div class="card" style="width: 20rem;">
-			<div class="card-body">
-				<h4 class="card-title">Login</h4>
-				<form:form action="authenticate"
-					modelAttribute="superadmin">
-					<div class="form-group">
-						<form:label path="username">
-							<spring:message text="User Name" />
-						</form:label>
-						<div>
-							<form:input path="username" class="form-control"
-								placeholder="User Name" />
-						</div>
-					</div>
-					<div class="form-group">
-						<form:label path="password">
-							<spring:message text="Password" />
-						</form:label>
-						<div>
-							<form:input path="password" type="password" class="form-control"
-								placeholder="password" />
-						</div>
-					</div>
-
-					<input type="submit" value="Login"
-						class="btn btn-primary card-link" />
-				</form:form>
-			</div>
-		</div>
-
+		<br />
+		<br />
+		<br />
+		<h3>Branches List</h3>
+		<c:if test="${!empty list}">
+			<table class="tg">
+				<tr>
+					<th width="80">Branch ID</th>
+					<th width="120">Branch Name</th>
+					<th width="120">Branch IFSC</th>
+					<th width="60">Edit</th>
+					<th width="60">Delete</th>
+				</tr>
+				<c:forEach items="${list}" var="branch">
+					<tr>
+						<td><c:out value="${branch.branchId}"></c:out></td>
+						<td>${branch.name}</td>
+						<td>${branch.ifsc}</td>
+						<td><a
+							href="<c:url value='/updateBranch/${branch.branchId}' />">Edit</a></td>
+						<td><a
+							href="<c:url value='/deleteBranch/${branch.branchId}' />">Delete</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
 	</div>
 
+	<div>
+		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

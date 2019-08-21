@@ -8,14 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${display_name}'sDashboard</h1>
+
 	<%
-		if (session.getAttribute("username") == null) {
+		if (request.getSession(false).getAttribute("username") == null) {
 			response.sendRedirect("super-admin-login");
-		} else {
-			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
 		}
 	%>
+	<h1><%=session.getAttribute("username")%>'s Dashboard
+	</h1>
+
 	<jsp:include page="include-logout.jsp" />
 	<ul>
 		<li><a href="create_branch">Create Branch</a></li>
