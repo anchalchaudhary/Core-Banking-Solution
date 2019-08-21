@@ -28,7 +28,8 @@
 	rel="stylesheet">
 </head>
 <body>
-
+	<%@include file="check_session.jsp"%>
+	<jsp:include page="include-superadmin(dashboard).jsp"></jsp:include>
 
 	<div>
 		<jsp:include page="base_post_login_header.jsp"></jsp:include>
@@ -89,6 +90,7 @@
 
 
 				<c:if test="${!empty branch.name}">
+
 					<input type="submit" class="btn btn-primary" value="<spring:message text="Edit Branch"/>" />
 				</c:if>
 				<c:if test="${empty branch.name}">
@@ -96,9 +98,19 @@
 				</c:if>
 			</form:form>
 		</div>
-		
 		<div class="col-sm-3"></div>
-		
+
+					<input type="submit" class="btn btn-primary"
+						value="<spring:message text="Edit Branch"/>" />
+				</c:if>
+				<c:if test="${empty branch.name}">
+					<input type="submit" class="btn btn-primary"
+						value="<spring:message text="Add Branch"/>" />
+				</c:if>
+			</form:form>
+		</div>
+
+		<div class="col-sm-3"></div>
 	</div>
 	<div>
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>

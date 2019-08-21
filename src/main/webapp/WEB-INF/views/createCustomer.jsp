@@ -11,7 +11,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+	<link href="<c:url value='/assets/css/home.css' />" rel="stylesheet">
+	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
+	
 
 </head>
 <body>
@@ -21,7 +23,11 @@
 		<jsp:include page="base_post_login_header.jsp"></jsp:include>	
 	</div>
 	
-	<br /><br /><br />
+	<div class="row">
+		<jsp:include page="sidebar_employee.jsp"></jsp:include>
+		<div class="col-sm-10" style="text-align: center;">
+			<br /><br />
+			<h3>Create Customer</h3>
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
@@ -85,12 +91,14 @@
 				</div>
 				
 				
-				<input type="submit" class="btn btn-primary" value="Create" />
+				<input type="submit" class="btn btn-primary" style="margin-left:auto;margin-right:auto;" value="Create" />
 			</form:form>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	
+		</div>
+	</div>
 	<div>
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>

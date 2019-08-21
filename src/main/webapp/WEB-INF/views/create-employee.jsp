@@ -8,6 +8,9 @@
 <title>Create Employee</title>
 </head>
 <body>
+	<%@include file="check_session.jsp"%>
+
+	<jsp:include page="include-superadmin(dashboard).jsp"></jsp:include>
 	<form:form action="add_employee" modelAttribute="employee">
 		<c:out value=""></c:out>
 		<table>
