@@ -72,7 +72,7 @@ public class SuperAdminController {
 
 			} else {
 				System.out.println("Unchecked");
-				mv.setViewName("super-admin-login");
+				mv.setViewName("super_admin_login");
 
 			}
 		} catch (Exception e) {
@@ -84,21 +84,14 @@ public class SuperAdminController {
 	
 
 	@RequestMapping("/sure-logout")
-	public ModelAndView sureLogout(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView sureLogout(HttpServletRequest request, HttpServletResponse response)
+	{
 		System.out.println("in sure logout");
 		mv = new ModelAndView();
 		mv.setViewName("sure_logout");
 
 
 		return mv;
-
-	}
-
-
-
-		
-		return mv;
-
 
 	}
 
@@ -109,7 +102,7 @@ public class SuperAdminController {
 
 		session.invalidate();
 
-		return "redirect:/super-admin-login";
+		return "redirect:/super_admin_login";
 
 	}
 

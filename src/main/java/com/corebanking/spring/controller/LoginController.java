@@ -53,10 +53,9 @@ public class LoginController
             session.setAttribute("username", employee.getEmpUserName());   
             session.setAttribute("employee", "employeeSession");
              authReq= new UsernamePasswordAuthenticationToken(employee.getEmpUserName(), employee.getEmpPassword());
-             auth = authManager.authenticate(authReq);
-           
-	          SecurityContext sc = SecurityContextHolder.getContext();
-	          sc.setAuthentication(auth);
+             auth = authManager.authenticate(authReq);           
+	         SecurityContext sc = SecurityContextHolder.getContext();
+	         sc.setAuthentication(auth);
             return new ModelAndView("redirect:/home"); 
         }
         else {
