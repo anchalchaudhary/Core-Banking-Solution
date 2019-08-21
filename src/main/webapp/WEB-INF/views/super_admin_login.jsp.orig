@@ -70,15 +70,15 @@
 			</nav>
 	</header>
 	<div class="container">
-
+<<<<<<< Updated upstream
 		<br /> <br /> <br />
-
+=======
 		<br /><br /><br />
 		<div class="card" style="width: 20rem;">
 			<div class="card-body">
 				<h4 class="card-title">Login</h4>
 				
-
+>>>>>>> Stashed changes
 		<div class="card" style="width: 20rem;">
 			<div class="card-body">
 				<h4 class="card-title">Login</h4>

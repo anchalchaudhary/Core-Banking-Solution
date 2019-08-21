@@ -96,10 +96,10 @@
 				<c:if test="${empty branch.name}">
 					<input type="submit" class="btn btn-primary" value="<spring:message text="Add Branch"/>" />
 				</c:if>
-			</form:form>
 		</div>
 		<div class="col-sm-3"></div>
-
+				<c:if test="${!empty branch.name}">
+				
 					<input type="submit" class="btn btn-primary"
 						value="<spring:message text="Edit Branch"/>" />
 				</c:if>
