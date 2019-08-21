@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.corebanking.spring.model.Account;
 import com.corebanking.spring.model.Customer;
+import com.corebanking.spring.model.Employee;
 
 public interface EmployeeService {
 	
@@ -18,6 +19,10 @@ public interface EmployeeService {
 
 
 	public boolean isRegistered(Customer customer);
+
 	public boolean updateCustomer(Customer customer);
+
+	Employee findEmployeeByUsername(String username);
+
 
 }

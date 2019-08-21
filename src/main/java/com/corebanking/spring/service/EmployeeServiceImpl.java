@@ -23,13 +23,18 @@ import com.corebanking.spring.model.Account;
 import com.corebanking.spring.model.Branch;
 
 import com.corebanking.spring.model.Customer;
+import com.corebanking.spring.model.Employee;
 import com.corebanking.spring.repository.CustomerRepository;
+import com.corebanking.spring.repository.EmployeeRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
 	@Autowired
 	BranchService branchServiceImpl;
@@ -156,6 +161,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return false;
 	}
 
+
 	@Override
 	@Transactional
 	public boolean updateCustomer(Customer customer) {
@@ -166,4 +172,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return false;
 		}
 	}
+
+
+	public Employee findEmployeeByUsername(String username)
+	{
+		Employee employee=employeeRepository.findEmployeeByEmpUserName(username);
+		return employee;
+	}
+
+
 }
