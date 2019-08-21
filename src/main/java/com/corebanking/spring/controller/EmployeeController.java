@@ -171,4 +171,10 @@ public class EmployeeController {
 		transactionService.transfer(transaction);
 		return "redirect:/home";
 	}
+	
+	
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public String dashboard(Model model) {
+		return "dashboard";
+	}
 }

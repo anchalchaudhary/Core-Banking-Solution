@@ -4,9 +4,18 @@
 	float: right;
 }
 
+div{
+	width: 100%;
+}
+
+body{
+	min-height: 100%;
+	 height: 100%;
+
+}
 
 footer {
-	position: absolute;
+	position: fixed;
 	margin-top: 35px;
     left: 0;
     bottom: 0%;

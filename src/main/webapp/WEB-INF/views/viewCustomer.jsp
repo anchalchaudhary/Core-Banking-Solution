@@ -68,5 +68,11 @@
 			</tr>
 		</table>
 	</c:if>
+	<c:if test="${empty customer.account.accountId}">
+	
+		<a href="../createAccount"><button class="btn btn-primary">Add Account</button></a>
+		
+	</c:if>
+	
 </body>
 </html>
