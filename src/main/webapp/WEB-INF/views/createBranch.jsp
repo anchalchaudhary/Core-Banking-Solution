@@ -78,12 +78,14 @@
 						<form:input path="ifsc" class="form-control" />
 					</div>
 				</div>
-				<%-- <tr>
-				<td><form:label path="empId">
-						<spring:message text="empId" />
-					</form:label></td>
-				<td><form:input path="empId" /></td>
-			</tr>	 --%>
+				<div class="form-group row">
+					<form:label path="empId.empId" class="col-sm-2 col-form-label">
+						<spring:message text="empId.empId" />
+					</form:label>
+					<div class="col-sm-10">
+						<form:input path="empId.empId" class="form-control" />
+					</div>
+				</div>
 
 
 				<c:if test="${!empty branch.name}">
