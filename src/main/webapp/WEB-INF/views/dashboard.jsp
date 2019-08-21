@@ -29,11 +29,11 @@
 	</div>
 		
 	<div class="row">
-		<div class="col-sm-3  sidebar">
-			<nav class="nav flex-column">
-  			<a class="nav-link active" href="#">Active</a>
-     		<a class="nav-link" href="#">Link</a>
- 			 <a class="nav-link" href="#">Link</a>
+		<div class="col-sm-2  sidebar">
+			<nav class="nav nav-tab flex-column">
+  			<a class="nav-link nav-item active" href="#">Active</a>
+     		<a class="nav-link nav-item" href="#">Link</a>
+ 			 <a class="nav-link nav-item" href="#">Link</a>
  			 <a class="nav-link disabled" href="#">Disabled</a>
  			 <a class="nav-link" href="#">Link</a>
  			 <a class="nav-link" href="#">Link</a>

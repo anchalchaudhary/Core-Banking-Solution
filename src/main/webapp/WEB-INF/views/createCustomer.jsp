@@ -16,6 +16,7 @@
 </head>
 <body>
 
+
 	<div>
 		<jsp:include page="base_post_login_header.jsp"></jsp:include>	
 	</div>
@@ -24,7 +25,18 @@
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
-			<form:form action="addCustomer" modelAttribute="customer">
+			<form:form action="addCustomer" modelAttribute="customer">	
+				<div class="form-group row">
+						<c:if test="${customer.customerId ne 0}">
+				<form:label path="customerId" class="col-sm-2 col-form-label">
+							<spring:message text="Customer ID" />
+						</form:label>
+						<div class="col-sm-10">
+							<form:input path="customerId" class="form-control"	readonly="true" size="8" disabled="true" />
+							<form:hidden path="customerId" />
+						</div>
+				</c:if>
+				</div>
 				
 				<div class="form-group row">
 					<form:label path="name"

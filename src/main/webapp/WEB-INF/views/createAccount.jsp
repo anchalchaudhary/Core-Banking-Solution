@@ -14,6 +14,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 </head>
 <body>
+
 	<div>
 		<jsp:include page="base_post_login_header.jsp"></jsp:include>	
 	</div>
@@ -22,14 +23,11 @@
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
-			<form:form action="createAccount" modelAttribute="account">
+			<form:form action="../createAccount/${customerId }" modelAttribute="account">
 				<div class="form-group row">
-					<form:label path="customer.customerId"
-						class="col-sm-2 col-form-label">
-						<spring:message text="Customer ID" />
-					</form:label>
+					<div class="col-sm-2"></div>
 					<div class="col-sm-10">
-						<form:input path="customer.customerId" class="form-control" placeholder="Customer Id" />
+						<form:hidden path="customer.customerId" />
 					</div>
 				</div>
 

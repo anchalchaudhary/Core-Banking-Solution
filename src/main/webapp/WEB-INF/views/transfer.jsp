@@ -25,12 +25,12 @@
 		</td> 
 	</tr>
 	</c:if>
-			<tr>
+			<%-- <tr>
 				<td><form:label path="fromaccount">
 						<spring:message text="fromaccount" />
 					</form:label></td>
 				<td><form:input path="fromaccount" /></td>
-			</tr>
+			</tr> --%>
 			
 			<tr>
 				<td><form:label path="toaccount">

@@ -8,7 +8,7 @@
 <title>Customer Details</title>
 </head>
 <body>
-	<c:if test="${!empty customer.name}">
+	<c:if test="${customer.customerId ne 0}">
 		<table>
 			<tr>
 				<th>Customer ID</th>
@@ -35,8 +35,10 @@
 				<td>${customer.salary}</td>
 			</tr>
 			<tr>
-				<td><a href="<c:url value='/updateCustomer/${customer.customerId}' />" >Edit</a></td>
-				<td><a href="<c:url value='/deleteCustomer/${customer.customerId}' />" >Delete</a></td>
+				<td><a
+					href="<c:url value='/updateCustomer/${customer.customerId}' />">Edit</a></td>
+				<td><a
+					href="<c:url value='/deleteCustomer/${customer.customerId}' />">Delete</a></td>
 			</tr>
 		</table>
 	</c:if>
@@ -66,13 +68,27 @@
 				<th>Branch IFSC</th>
 				<td>${customer.account.branch.ifsc}</td>
 			</tr>
+			<tr>
+				<td><a
+					href="<c:url value='/depositMoney/${customer.account.accountId}' />">Deposit
+						Money</a></td>
+				<td><a
+					href="<c:url value='/withdrawMoney/${customer.account.accountId}' />">Withdraw
+						Money</a></td>
+				<td><a href="<c:url value='/transfer/${customer.account.accountId}' />">Transfer Money</a></td>
+			</tr>
 		</table>
 	</c:if>
 	<c:if test="${empty customer.account.accountId}">
-	
-		<a href="../createAccount"><button class="btn btn-primary">Add Account</button></a>
-		
+
+		<h4>No Account Added</h4>
+
+
+		<a href="../createAccount/${customer.customerId }"><button
+				class="btn btn-primary">Add Account</button></a>
+
+
 	</c:if>
-	
+
 </body>
 </html>
