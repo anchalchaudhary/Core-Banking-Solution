@@ -44,8 +44,16 @@ public class SuperAdminController {
 //		return mv;
 	}
 
+	@RequestMapping("show-superadmin-dashboard")
+	public ModelAndView showSuperAdminDashBoard1(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("in dashboard1");
+		mv = new ModelAndView();
+		mv.setViewName("superadmin_dashboard");
+		return mv;
+	}
+
 	@SuppressWarnings("finally")
-	@RequestMapping("/show-superadmin-dashboard")
+	@RequestMapping("/authenticate")
 	public ModelAndView showSuperAdminDashboard(@ModelAttribute("superadmin") SuperAdmin super_admin,
 			BindingResult result, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("in super admin" + super_admin.getUsername() + "  " + super_admin.getPassword());
@@ -57,8 +65,8 @@ public class SuperAdminController {
 				session = request.getSession();
 				session.setAttribute("username", super_admin.getUsername());
 				System.out.println("Checkeddd");
-				mv.setViewName("superadmin_dashboard");
-				mv.addObject("display_name", super_admin.getUsername());
+				mv.setViewName("redirect:/show-superadmin-dashboard");
+
 			} else {
 				System.out.println("Unchecked");
 				mv.setViewName("super-admin-login");
@@ -79,7 +87,20 @@ public class SuperAdminController {
 		
 		return mv;
 
+
 	}
+
+	@RequestMapping("/sure-logout")
+	public ModelAndView sureLogout(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("in sure logout");
+		mv = new ModelAndView();
+		mv.setViewName("sure_logout");
+
+		return mv;
+
+	}
+
+
 	@RequestMapping("/superadmin-logout")
 	public String superAdminLogout(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("in logout");
@@ -113,7 +134,8 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/add_employee", method = RequestMethod.GET)
-	public ModelAndView showCreateBranchForm() {
+	public ModelAndView showCreateBranchForm(HttpServletRequest request, HttpServletResponse response) {
+
 		ModelAndView modelAndView = new ModelAndView("create-employee");
 		modelAndView.addObject("headermessage", "Add branch Details");
 		modelAndView.addObject("employee", new Employee());
@@ -121,7 +143,8 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = { "/add_employee", "/update_employee/add_employee" }, method = RequestMethod.POST)
-	public ModelAndView addEmployee(@ModelAttribute Employee employee, BindingResult bindingResult) {
+	public ModelAndView addEmployee(@ModelAttribute Employee employee, BindingResult bindingResult,
+			HttpServletRequest request, HttpServletResponse response) {
 		mv = new ModelAndView("redirect:/list_employee");
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("error");
@@ -134,8 +157,7 @@ public class SuperAdminController {
 
 		return mv;
 	}
-	
-	
+
 	@RequestMapping(value = "/update_employee/{id}", method = RequestMethod.GET)
 	public String updateBranch(@PathVariable("id") int id, Model model) {
 		model.addAttribute("employee", this.adminService.getEmployeeById(id).orElse(null));
@@ -160,10 +182,16 @@ public class SuperAdminController {
 		mv.setViewName("list-employee");
 		System.out.println(adminService);
 		list = adminService.listEmployee();
+
 		for(Employee e: list)
 		{
 			System.out.println(e);
 		}
+		mv.addObject("list", list);
+		return mv;
+	}
+}
+
 		mv.addObject("list", list);
 		return mv;
 	}

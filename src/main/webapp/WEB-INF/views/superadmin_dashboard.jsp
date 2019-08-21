@@ -8,7 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<h1>${display_name}'s Dashboard</h1>
+
+
+	<%
+		if (request.getSession(false).getAttribute("username") == null) {
+			response.sendRedirect("super-admin-login");
+		}
+	%>
+	<h1><%=session.getAttribute("username")%>'s Dashboard
+	</h1>
+
+
 	<jsp:include page="include-logout.jsp" />
 	<ul>
 		<li><a href="add_employee">Create Employee</a></li>
