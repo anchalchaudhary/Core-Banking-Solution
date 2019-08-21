@@ -69,6 +69,7 @@
 			<tr>
 				<td><a href="<c:url value='/depositMoney/${customer.account.accountId}' />" >Deposit Money</a></td>
 				<td><a href="<c:url value='/withdrawMoney/${customer.account.accountId}' />" >Withdraw Money</a></td>
+				<td><a href="<c:url value='/transfer/${customer.account.accountId}' />" >Transfer Money</a></td>
 			</tr>
 		</table>
 	</c:if>

@@ -147,7 +147,7 @@ public class EmployeeController {
 	public ModelAndView createAccount(@PathVariable("id") int customerId, @ModelAttribute("account") Account account, BindingResult bindingResult)
 	{
 
-		ModelAndView modelAndView = new ModelAndView("redirect:/home");
+		ModelAndView modelAndView = new ModelAndView("redirect:/viewCustomer/"+customerId);
 		if(bindingResult.hasErrors()) {
 			return new ModelAndView("error");
 		}
@@ -167,18 +167,26 @@ public class EmployeeController {
 		return modelAndView;	
 	}
 
-	@RequestMapping(value="/transfer", method = RequestMethod.GET)
-	public String showTransferForm(Model model)
+	@RequestMapping(value="/transfer/{fromAccountId}", method = RequestMethod.GET)
+	public ModelAndView showTransferForm(@PathVariable("fromAccountId") int fromAccountId)
 	{
-		model.addAttribute("transfer", new Transaction());
-		return "transfer";
+		ModelAndView modelAndView = new ModelAndView("transfer");
+		modelAndView.addObject("fromAccountId", fromAccountId);
+		modelAndView.addObject("transfer", new Transaction());
+		return modelAndView;
 	}
 	
-	@RequestMapping(value="/transfer",method = RequestMethod.POST)
-	public String addTransfer(@ModelAttribute("transfer") Transaction transaction)
+	@RequestMapping(value="/transfer/transfer/{fromAccountId}",method = RequestMethod.POST)
+	public ModelAndView addTransfer(@PathVariable("fromAccountId") int fromAccountId, @ModelAttribute("transfer") Transaction transaction, BindingResult bindingResult)
 	{
+		Account fromAccount = accountService.getAccountById(fromAccountId);
+		transaction.setFromaccount(fromAccount);
+		ModelAndView modelAndView = new ModelAndView("redirect:/viewCustomer/"+fromAccount.getCustomer().getCustomerId());
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView("error");
+		}
 		transactionService.transfer(transaction);
-		return "redirect:/home";
+		return modelAndView;
 	}
 	
 	@RequestMapping(value="/depositMoney/{id}", method = RequestMethod.GET)

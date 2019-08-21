@@ -8,7 +8,7 @@
 <title>Create Transfer</title>
 </head>
 <body>
-	<form:form action="transfer" modelAttribute="transfer">
+	<form:form action="transfer/${fromAccountId}" modelAttribute="transfer">
 		<c:out value=""></c:out>
 		<table>
 		<c:if test="${!empty transfer.id}">
@@ -25,13 +25,15 @@
 		</td> 
 	</tr>
 	</c:if>
-			<tr>
+			<%-- <tr>
 				<td><form:label path="fromaccount">
 						<spring:message text="fromaccount" />
 					</form:label></td>
 				<td><form:input path="fromaccount" /></td>
+			</tr> --%>
+			<tr>
+				<td><form:hidden path="fromaccount" /></td>
 			</tr>
-			
 			<tr>
 				<td><form:label path="toaccount">
 						<spring:message text="toaccount" />
