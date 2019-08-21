@@ -28,21 +28,8 @@
 			</div>
 	</div>
 		
-	<div class="row">
-		<div class="col-sm-2  sidebar">
-			<nav class="nav nav-tab flex-column">
-  			<a class="nav-link nav-item active" href="#">Active</a>
-     		<a class="nav-link nav-item" href="#">Link</a>
- 			 <a class="nav-link nav-item" href="#">Link</a>
- 			 <a class="nav-link disabled" href="#">Disabled</a>
- 			 <a class="nav-link" href="#">Link</a>
- 			 <a class="nav-link" href="#">Link</a>
- 			 <a class="nav-link disabled" href="#">Disabled</a>
- 			 <a class="nav-link" href="#">Link</a>
- 			 <a class="nav-link" href="#">Link</a>
- 			 <a class="nav-link disabled" href="#">Disabled</a>
-</nav>
-		</div>
+	<div>
+		<jsp:include page="sidebar_employee.jsp"></jsp:include>
 	</div>
 	
 	<div>
