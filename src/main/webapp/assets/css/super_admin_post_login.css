@@ -1,0 +1,19 @@
+@charset "ISO-8859-1";
+
+nav{
+	background-color: #001E66;
+	color: white;
+}
+
+.container{
+	left: 0%;
+	right: 0%;
+	text-align: center;
+}
+
+.card{
+	display: inline-block;
+	text-align: left;
+	border: 1px solid;
+	box-shadow: 2px 2px 5px #888888;
+}

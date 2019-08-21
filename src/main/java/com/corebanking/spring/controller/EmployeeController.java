@@ -189,6 +189,13 @@ public class EmployeeController {
 		return modelAndView;
 	}
 	
+
+	
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public String dashboard(Model model) {
+		return "dashboard";
+	}
+
 	@RequestMapping(value="/depositMoney/{id}", method = RequestMethod.GET)
 	public ModelAndView showDepositMoneyForm(@PathVariable("id")int id) {
 		ModelAndView modelAndView = new ModelAndView("depositMoney");
@@ -233,5 +240,6 @@ public class EmployeeController {
 		
 		transactionService.withdraw(personalTransaction);
 		return modelAndView;
+
 	}
 }
