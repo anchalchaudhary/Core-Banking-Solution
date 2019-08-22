@@ -27,7 +27,7 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
 			<h3>Add Account</h3>
-			<form:form action="../createAccount/${customerId }" modelAttribute="account">
+			<form:form action="../createAccount/${customerId }" modelAttribute="account" onsubmit="return validatecreateaccount();">
 				<div class="form-group row">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-10">
@@ -40,7 +40,8 @@
 						<spring:message text="Balance" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="balance" class="form-control" />
+						<form:input path="balance" id="balance" class="form-control" />
+						<span id="errbalance" style="color:red; display:none;">Enter Balance</span>
 					</div>
 				</div>
 
@@ -49,7 +50,8 @@
 						<spring:message text="Branch Id" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="branch.branchId" class="form-control" />
+						<form:input path="branch.branchId" id="branch" class="form-control" />
+						<span id="errbranch" style="color:red; display:none;">Enter Branch</span>
 					</div>
 				</div>
 

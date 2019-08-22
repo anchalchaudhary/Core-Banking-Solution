@@ -13,7 +13,7 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link rel="stylesheet" href="<c:url value='/assets/css/super_admin_post_login.css' />" />
 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-	
+	<script src="<c:url value='/assets/js/validate.js' />"></script>
 </head>
 <body>
 	
@@ -26,7 +26,7 @@
 		<div class="card" style="width: 20rem;">
 			<div class="card-body">
 				<h4 class="card-title">Login</h4>
-				<form:form action="login" modelAttribute="employee">
+				<form:form action="login" modelAttribute="employee" onsubmit="return validatelogin();">
 					<c:if test="${employee.empId != 0}">
 						<div class="form-group">
 						
@@ -44,7 +44,8 @@
 							<spring:message text="Employee User Name" />
 						</form:label>
 						<div>
-							<form:input path="empUserName" class="form-control" placeholder="Employee User Name" />
+							<form:input path="empUserName" id="username" class="form-control" placeholder="Employee User Name" />
+							<span id="errusername" style="color:red; display:none;">Enter Username</span>
 						</div>
 					</div>
 					<div class="form-group">
@@ -52,7 +53,9 @@
 							<spring:message text="Employee Password" />
 						</form:label>
 						<div>
-							<form:input path="empPassword" type="password" class="form-control" placeholder="password" />
+							<form:input path="empPassword" id="password" type="password" class="form-control" placeholder="password" />
+							<span id="errpassword" style="color:red; display:none;">Enter Password</span>
+						
 						</div>
 					</div>
 					<c:if test="${ employee.empId != 0}">

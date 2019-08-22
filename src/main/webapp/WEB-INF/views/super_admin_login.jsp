@@ -32,6 +32,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
 	rel="stylesheet">
+<script src="<c:url value='/assets/js/validate.js' />"></script>
 </head>
 <body>
 	<header>
@@ -46,15 +47,15 @@
 		<div class="card" style="width: 20rem;">
 			<div class="card-body">
 				<h4 class="card-title">Login</h4>
-				<form:form action="authenticate"
-					modelAttribute="superadmin">
+				<form:form action="authenticate" modelAttribute="superadmin" onsubmit="return validatelogin();">
 					<div class="form-group">
 						<form:label path="username">
 							<spring:message text="User Name" />
 						</form:label>
 						<div>
-							<form:input path="username" class="form-control"
+							<form:input id="username" path="username" class="form-control"
 								placeholder="User Name" />
+							<span id="errusername" style="color:red; display:none;">Enter Username</span>
 						</div>
 					</div>
 					<div class="form-group">
@@ -62,8 +63,9 @@
 							<spring:message text="Password" />
 						</form:label>
 						<div>
-							<form:input path="password" type="password" class="form-control"
+							<form:input path="password" id="password" type="password" class="form-control"
 								placeholder="password" />
+							<span id="errpassword" style="color:red; display:none;">Enter Password</span>
 						</div>
 					</div>
 					<input type="submit" value="Login"
