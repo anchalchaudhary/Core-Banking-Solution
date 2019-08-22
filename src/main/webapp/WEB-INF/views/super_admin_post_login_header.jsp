@@ -1,6 +1,6 @@
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#"><h4>Core Banking</h4></a>
+			<a class="navbar-brand" href="#"><h4>Core Banking Admin</h4></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -8,9 +8,9 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<ul class="nav navbar-nav ml-auto">
-					<li class="active"><a class="nav-item nav-link" href="#"><h5>Home</h5></a>
+					<li class="active"><a class="nav-item nav-link" href="/corebanking/show-superadmin-dashboard"><h5>Dashboard</h5></a>
 					</li>
-					<li><a class="nav-item nav-link" href="#"><h5>Login</h5></a></li>
+					<li><a class="nav-item nav-link" href="/corebanking/sure-logout"><h5>Logout</h5></a></li>
 				</ul>
 			</div>
 		</nav>

@@ -10,7 +10,7 @@
 			<ul class="nav navbar-nav ml-auto">
 				<li class="active"><a class="nav-item nav-link" href="/corebanking/dashboard"><h5>Dashboard</h5></a>
 				</li>
-				<li><a class="nav-item nav-link" href="logout"><h5>Logout</h5></a></li>
+				<li><a class="nav-item nav-link" href="/corebanking/logout"><h5>Logout</h5></a></li>
 			</ul>
 		</div>
 	</nav>

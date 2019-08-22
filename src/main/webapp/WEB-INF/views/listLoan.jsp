@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page session="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,8 +54,10 @@
 			<div class="col-sm-2"></div>
 		</div>
 	
-	<div>
+	<div style="position: relative; min-height: 45vh;">
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
+		<%@ include file="sessionCheck.jsp"%>
+	
 </body>
 </html>

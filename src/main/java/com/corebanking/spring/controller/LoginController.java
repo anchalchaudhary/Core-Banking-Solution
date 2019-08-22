@@ -52,12 +52,8 @@ public class LoginController
             HttpSession session = request.getSession();
             session.setAttribute("username", employee.getEmpUserName());   
             session.setAttribute("employee", "employeeSession");
-             authReq= new UsernamePasswordAuthenticationToken(employee.getEmpUserName(), employee.getEmpPassword());
-             auth = authManager.authenticate(authReq);
-           
-	          SecurityContext sc = SecurityContextHolder.getContext();
-	          sc.setAuthentication(auth);
-            return new ModelAndView("redirect:/home"); 
+            
+            return new ModelAndView("redirect:/dashboard"); 
         }
         else {
             System.out.println("credentials not matched");

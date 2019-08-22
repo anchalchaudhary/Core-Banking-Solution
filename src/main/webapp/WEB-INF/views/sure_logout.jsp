@@ -17,5 +17,7 @@
 	%>
 	<h3>Press Again to Logout</h3>
 	<a href="superadmin-logout">Logout</a>
+		<%@ include file="sessionCheck.jsp"%>
+	
 </body>
 </html>

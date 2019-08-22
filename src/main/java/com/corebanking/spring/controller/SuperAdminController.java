@@ -43,9 +43,17 @@ public class SuperAdminController {
 //
 //		return mv;
 	}
+	
+	@RequestMapping("show-superadmin-dashboard")
+	public ModelAndView showSuperAdminDashboard(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("in dashboard 1");
+		mv = new ModelAndView();
+		mv.setViewName("superadmin_dashboard");
+		return mv;
+	}
 
 	@SuppressWarnings("finally")
-	@RequestMapping("/show-superadmin-dashboard")
+	@RequestMapping("/authenticate")
 	public ModelAndView showSuperAdminDashboard(@ModelAttribute("superadmin") SuperAdmin super_admin,
 			BindingResult result, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("in super admin" + super_admin.getUsername() + "  " + super_admin.getPassword());
@@ -57,8 +65,7 @@ public class SuperAdminController {
 				session = request.getSession();
 				session.setAttribute("username", super_admin.getUsername());
 				System.out.println("Checkeddd");
-				mv.setViewName("superadmin_dashboard");
-				mv.addObject("display_name", super_admin.getUsername());
+				mv.setViewName("redirect:/show-superadmin-dashboard");
 			} else {
 				System.out.println("Unchecked");
 				mv.setViewName("super-admin-login");

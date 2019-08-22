@@ -15,7 +15,7 @@ body{
 }
 
 footer {
-	position: fixed;
+	position: absolute;
 	margin-top: 35px;
     left: 0;
     bottom: 0%;

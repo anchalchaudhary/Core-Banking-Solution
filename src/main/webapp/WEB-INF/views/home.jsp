@@ -47,7 +47,7 @@
 			</div>
 		</div>
 	</div>
-<div>
+	<div>
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
 </body>

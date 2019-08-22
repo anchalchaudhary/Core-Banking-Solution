@@ -30,7 +30,7 @@
 		<div class="card" style="width: 20rem;">
 			<div class="card-body">
 				<h4 class="card-title">Login</h4>
-				<form:form action="show-superadmin-dashboard"
+				<form:form action="authenticate"
 					modelAttribute="superadmin">
 					<div class="form-group">
 						<form:label path="username">
@@ -60,12 +60,5 @@
 	<div>
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
-	
-	
-	
-	
-	
-	
-
 </body>
 </html>

@@ -1,21 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" isELIgnored="false"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ include file="sessionCheck.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet" type="text/css">
+	<link href="<c:url value='/assets/css/home.css' />" rel="stylesheet">
+	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
+	
 </head>
 <body>
-	<h1>${display_name}'s Dashboard</h1>
-	<jsp:include page="include-logout.jsp" />
-	<ul>
-		<li><a href="add_employee">Create Employee</a></li>
-		<li><a href="list_employee">List Employees</a></li>
-		<li><a href="addBranch">Create Branch</a></li>
-		<li><a href="listBranch">List Branch</a></li>
+	
+	<div>
+		<%@include file="super_admin_post_login_header.jsp"%> 	
+	</div>
 
-	</ul>
+	<div class="row">
+			<%@include file="sidebar_super_admin.jsp"%>
+		<div class="col-sm-10" style="text-align: center;">
+			<br /><br />
+			<h3>Welcome To Admin Dashboard</h3>
+		</div>
+	</div>	
+	
+	<div>
+		<%@include file="base_pre_login_footer.jsp"%>
+	</div>
+	
 </body>
 </html>
