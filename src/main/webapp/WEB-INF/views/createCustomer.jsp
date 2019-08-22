@@ -12,10 +12,11 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/home.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
-	
+	<script src="<c:url value='/assets/js/validate.js' />"></script>
+	<script src="<c:url value='/assets/js/defaultvalues.js' />"></script>
 
 </head>
-<body>
+<body onload="preventdefaultcustomer();">
 
 
 	<div>
@@ -30,7 +31,7 @@
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
-			<form:form action="addCustomer" modelAttribute="customer">	
+			<form:form action="addCustomer" modelAttribute="customer" onsubmit="return validatecustomer();">	
 				<div class="form-group row">
 						<c:if test="${customer.customerId ne 0}">
 				<form:label path="customerId" class="col-sm-2 col-form-label">
@@ -49,7 +50,8 @@
 						<spring:message text="Name" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="name" class="form-control" />
+						<form:input path="name" id="name" class="form-control" />
+						<span id="errname" style="color:red; display:none;">Enter Name</span>
 					</div>
 				</div>
 
@@ -58,7 +60,8 @@
 						<spring:message text="Contact Number" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="phone" class="form-control" />
+						<form:input path="phone" id="phone" class="form-control" onblur="return validatephone();"/>
+						<span id="errphone" style="color:red; display:none;"></span>
 					</div>
 				</div>
 
@@ -67,7 +70,8 @@
 						<spring:message text="Address" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="address" class="form-control" />
+						<form:input path="address" id="address" class="form-control" />
+						<span id="erraddress" style="color:red; display:none;">Enter Address</span>
 					</div>
 				</div>
 
@@ -76,7 +80,8 @@
 						<spring:message text="Email" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="email" class="form-control" />
+						<form:input path="email" id="email" class="form-control" onblur="return validateemail();" />
+						<span id="erremail" style="color:red; display:none;"></span>
 					</div>
 				</div>
 				
@@ -85,7 +90,8 @@
 						<spring:message text="Salary" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="salary" class="form-control" />
+						<form:input path="salary" type="number" id="salary" class="form-control" />
+						<span id="errsalary" style="color:red; display:none;">Enter Salary</span>
 					</div>
 				</div>
 				
@@ -98,7 +104,7 @@
 	
 		</div>
 	</div>
-	<div style="position: relative; min-height: 45vh;">
+	<div style="position: relative; min-height: 17.5vh;">
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
 	

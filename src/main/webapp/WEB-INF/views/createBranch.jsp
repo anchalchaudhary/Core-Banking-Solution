@@ -12,7 +12,7 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/home.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
-	
+	<script src="<c:url value='/assets/js/validate.js' />"></script>
 </head>
 <body>
 	<div>
@@ -28,7 +28,7 @@
 			<div class="row">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6">
-					<form:form action="addBranch" modelAttribute="branch">
+					<form:form action="addBranch" modelAttribute="branch" onsubmit="return validatebranch();">
 						<div class="form-group row">
 							<c:if test="${!empty branch.name}">
 								<form:label path="branchId" class="col-sm-2 col-form-label">
@@ -43,10 +43,11 @@
 						</div>
 						<div class="form-group row">
 							<form:label path="name" class="col-sm-2 col-form-label">
-								<spring:message text="Name" />
+								<spring:message text="Branch Name" />
 							</form:label>
 							<div class="col-sm-10">
-								<form:input path="name" class="form-control" />
+								<form:input path="name" id="name" class="form-control" />
+								<span id="errname" style="color:red; display:none;">Enter Branch Name</span>
 							</div>
 						</div>
 
@@ -55,7 +56,8 @@
 								<spring:message text="Address" />
 							</form:label>
 							<div class="col-sm-10">
-								<form:input path="address" class="form-control" />
+								<form:input path="address" id="address" class="form-control" />
+								<span id="erraddress" style="color:red; display:none;">Enter Address</span>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -63,7 +65,8 @@
 								<spring:message text="IFSC" />
 							</form:label>
 							<div class="col-sm-10">
-								<form:input path="ifsc" class="form-control" />
+								<form:input path="ifsc" id="ifsc" class="form-control" />
+								<span id="errifsc" style="color:red; display:none;">Enter IFSC</span>
 							</div>
 						</div>
 						<%-- <tr>
@@ -89,7 +92,7 @@
 		</div>
 	</div>
 
-	<div style="position: relative; min-height: 45vh;">
+	<div style="position: relative; min-height: 34vh;" id="footerdiv">
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
 	

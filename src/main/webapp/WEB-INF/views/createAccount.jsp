@@ -13,8 +13,10 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
+	<script src="<c:url value='/assets/js/validate.js' />"></script>
+	<script src="<c:url value='/assets/js/defaultvalues.js' />"></script>
 </head>
-<body>
+<body onload="preventdefaultaccount();">
 
 	<div>
 		<jsp:include page="base_post_login_header.jsp"></jsp:include>	
@@ -40,7 +42,7 @@
 						<spring:message text="Balance" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="balance" id="balance" class="form-control" />
+						<form:input path="balance" type="number" min="1" id="balance" class="form-control" />
 						<span id="errbalance" style="color:red; display:none;">Enter Balance</span>
 					</div>
 				</div>
@@ -50,7 +52,7 @@
 						<spring:message text="Branch Id" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="branch.branchId" id="branch" class="form-control" />
+						<form:input path="branch.branchId" type="number" min="1" id="branch" class="form-control" />
 						<span id="errbranch" style="color:red; display:none;">Enter Branch</span>
 					</div>
 				</div>
