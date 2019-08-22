@@ -42,6 +42,14 @@
 					</div>
 				</c:if>
 				<div class="form-group row">
+					<form:label path="customerId.customerId" class="col-sm-2 col-form-label">
+						<spring:message text="Customer ID" />
+					</form:label>
+					<div class="col-sm-10">
+						<form:input path="customerId.customerId" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group row">
 					<form:label path="amount" class="col-sm-2 col-form-label">
 						<spring:message text="Amount" />
 					</form:label>

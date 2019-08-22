@@ -81,7 +81,7 @@
 				</div>
 				<div class="form-group row">
 					<form:label path="empId.empId" class="col-sm-2 col-form-label">
-						<spring:message text="empId.empId" />
+						<spring:message text="Branch Admin ID" />
 					</form:label>
 					<div class="col-sm-10">
 						<form:input path="empId.empId" class="form-control" />
@@ -96,22 +96,11 @@
 				<c:if test="${empty branch.name}">
 					<input type="submit" class="btn btn-primary" value="<spring:message text="Add Branch"/>" />
 				</c:if>
-		</div>
-		<div class="col-sm-3"></div>
-				<c:if test="${!empty branch.name}">
-				
-					<input type="submit" class="btn btn-primary"
-						value="<spring:message text="Edit Branch"/>" />
-				</c:if>
-				<c:if test="${empty branch.name}">
-					<input type="submit" class="btn btn-primary"
-						value="<spring:message text="Add Branch"/>" />
-				</c:if>
-			</form:form>
+				</form:form>
 		</div>
 
 		<div class="col-sm-3"></div>
-	</div>
+		</div>
 	<div>
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>

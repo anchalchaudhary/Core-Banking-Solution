@@ -17,7 +17,7 @@ public class Employee {
 	private String empUserName;
 	private String empPassword;
 	
-	@OneToOne(mappedBy = "empId", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "empId")
 	private Branch branch;
 	public int getEmpId() {
 		return empId;

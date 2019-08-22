@@ -40,7 +40,9 @@
 		</nav>
 	</header>
 	<div class="container">
-		<br /><br /><br />
+		<br />
+		<br />
+		<br />
 		<div class="card" style="width: 20rem;">
 			<div class="card-body">
 				<h4 class="card-title">Login</h4>
@@ -59,13 +61,15 @@
 							<spring:message text="Password" />
 						</form:label>
 						<div>
-							<form:input path="password" type="password" class="form-control" placeholder="password" />
+							<form:input path="password" type="password" class="form-control"
+								placeholder="password" />
 						</div>
 					</div>
-					<input type="submit" value="Login" class="btn btn-primary card-link" />
+					<input type="submit" value="Login"
+						class="btn btn-primary card-link" />
 				</form:form>
+			</div>
 		</div>
-	</div>
 
 	</div>
 	<div>

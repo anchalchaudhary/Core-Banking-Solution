@@ -102,29 +102,8 @@ public class SuperAdminController {
 
 		session.invalidate();
 
-		return "redirect:/super_admin_login";
+		return "redirect:/super-admin-login";
 
-	}
-
-	@RequestMapping("/create_branch")
-	public ModelAndView createBranch(HttpServletRequest request, HttpServletResponse response) {
-		mv = new ModelAndView();
-		mv.setViewName("create-branch");
-		return mv;
-	}
-
-	@RequestMapping("/update_branch")
-	public ModelAndView updateBranch(HttpServletRequest request, HttpServletResponse response) {
-		mv = new ModelAndView();
-		mv.setViewName("update-branch");
-		return mv;
-	}
-
-	@RequestMapping("/delete_branch")
-	public ModelAndView deleteBranch(HttpServletRequest request, HttpServletResponse response) {
-		mv = new ModelAndView();
-		mv.setViewName("delete-branch");
-		return mv;
 	}
 
 	@RequestMapping(value = "/add_employee", method = RequestMethod.GET)
@@ -165,7 +144,7 @@ public class SuperAdminController {
 		adminService.deleteEmployee(adminService.getEmployeeById(id).orElse(null));
 		List<Employee> list = adminService.listEmployee();
 		model.addAttribute("list", list);
-		return "list-employee";
+		return "redirect:/list_employee";
 	}
 
 	@RequestMapping("/list_employee")

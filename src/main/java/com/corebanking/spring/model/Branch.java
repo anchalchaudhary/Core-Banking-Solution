@@ -25,7 +25,7 @@ public class Branch
 	private String name;
 	private String ifsc;
 	
-	@OneToOne(cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
     
 	private Employee empId;
 	

@@ -43,6 +43,8 @@
 					<th width="80">Branch ID</th>
 					<th width="120">Branch Name</th>
 					<th width="120">Branch IFSC</th>
+					<th width="120">Branch Address</th>
+					<th width="120">Branch Admin</th>
 					<th width="60">Edit</th>
 					<th width="60">Delete</th>
 				</tr>
@@ -51,6 +53,8 @@
 						<td><c:out value="${branch.branchId}"></c:out></td>
 						<td>${branch.name}</td>
 						<td>${branch.ifsc}</td>
+						<td>${branch.address}</td>
+						<td>${branch.empId.empId}</td>
 						<td><a
 							href="<c:url value='/updateBranch/${branch.branchId}' />">Edit</a></td>
 						<td><a

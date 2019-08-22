@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.corebanking.spring.service.BranchService;
 
 @Controller
-@RequestMapping(value="/branch")
+//@RequestMapping(value="/branch")
 public class BranchController {
 	private BranchService branchService;
 	private HttpSession session;
@@ -37,6 +37,7 @@ public class BranchController {
 
 	@RequestMapping(value = "/addBranch", method = RequestMethod.GET)
 	public ModelAndView showCreateBranchForm() {
+		System.out.println("IN add branch");
 		ModelAndView modelAndView = new ModelAndView("createBranch");
 		modelAndView.addObject("headermessage", "Add branch Details");
 		modelAndView.addObject("branch", new Branch());
@@ -57,6 +58,7 @@ public class BranchController {
 			branchService.addBranch(branch);
 		} else {
 			branchService.updateBranch(branch);
+			return new ModelAndView("redirect:/listBranch");
 		}
 		return modelAndView;
 
