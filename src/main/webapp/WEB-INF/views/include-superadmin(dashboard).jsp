@@ -1,1 +1,1 @@
-<a href="show-superadmin-dashboard">Go to Dahsboard</a>
+<a href="/corebanking/show-superadmin-dashboard">Go to Dashboard</a>

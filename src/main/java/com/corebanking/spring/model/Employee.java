@@ -1,9 +1,11 @@
 package com.corebanking.spring.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Employee {
@@ -14,6 +16,9 @@ public class Employee {
 	private String empName;
 	private String empUserName;
 	private String empPassword;
+	
+	@OneToOne(mappedBy = "empId")
+	private Branch branch;
 	public int getEmpId() {
 		return empId;
 	}

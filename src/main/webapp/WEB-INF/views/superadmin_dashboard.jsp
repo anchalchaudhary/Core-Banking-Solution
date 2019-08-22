@@ -16,7 +16,6 @@
 	
 </head>
 <body>
-	
 	<div>
 		<%@include file="super_admin_post_login_header.jsp"%> 	
 	</div>
@@ -32,6 +31,5 @@
 	<div>
 		<%@include file="base_pre_login_footer.jsp"%>
 	</div>
-	
 </body>
 </html>

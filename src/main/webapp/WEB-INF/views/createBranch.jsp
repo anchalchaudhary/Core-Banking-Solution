@@ -58,7 +58,6 @@
 								<form:input path="address" class="form-control" />
 							</div>
 						</div>
-
 						<div class="form-group row">
 							<form:label path="ifsc" class="col-sm-2 col-form-label">
 								<spring:message text="IFSC" />

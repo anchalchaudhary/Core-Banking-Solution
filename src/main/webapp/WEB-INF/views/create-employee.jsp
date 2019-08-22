@@ -16,10 +16,9 @@
 	
 </head>
 <body>
-		<div>
+	<div>
 		<jsp:include page="super_admin_post_login_header.jsp"></jsp:include>	
 	</div>
-
 	<div class="row">
 			<jsp:include page="sidebar_super_admin.jsp"></jsp:include>
 		<div class="col-sm-10" style="text-align: center;">

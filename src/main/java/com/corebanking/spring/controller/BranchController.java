@@ -1,4 +1,12 @@
 package com.corebanking.spring.controller;
+import com.corebanking.spring.model.Branch;
+import com.corebanking.spring.service.BranchService;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.corebanking.spring.model.Branch;
 import com.corebanking.spring.service.BranchService;
@@ -18,10 +26,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.corebanking.spring.service.BranchService;
 
 @Controller
-
+//@RequestMapping(value="/branch")
 public class BranchController {
 	private BranchService branchService;
-
+	private HttpSession session;
 	@Autowired(required = true)
 	public void setCustomerService(BranchService branchService) {
 		this.branchService = branchService;
@@ -29,6 +37,7 @@ public class BranchController {
 
 	@RequestMapping(value = "/addBranch", method = RequestMethod.GET)
 	public ModelAndView showCreateBranchForm() {
+		System.out.println("IN add branch");
 		ModelAndView modelAndView = new ModelAndView("createBranch");
 		modelAndView.addObject("headermessage", "Add branch Details");
 		modelAndView.addObject("branch", new Branch());
@@ -36,7 +45,8 @@ public class BranchController {
 	}
 
 	@RequestMapping(value = { "/addBranch", "updateBranch/addBranch" }, method = RequestMethod.POST)
-	public ModelAndView addNewBranch(@ModelAttribute Branch branch, BindingResult bindingResult) {
+	public ModelAndView addNewBranch(@ModelAttribute Branch branch, BindingResult bindingResult,
+			HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView modelAndView = new ModelAndView("redirect:/addBranch");
 		if (bindingResult.hasErrors()) {
@@ -48,13 +58,14 @@ public class BranchController {
 			branchService.addBranch(branch);
 		} else {
 			branchService.updateBranch(branch);
+			return new ModelAndView("redirect:/listBranch");
 		}
 		return modelAndView;
 
 	}
 
 	@RequestMapping(value = "/listBranch", method = RequestMethod.GET)
-	public String showListBranches(Model model) {
+	public String showListBranches(Model model, HttpServletRequest request, HttpServletResponse response) {
 
 		List<Branch> list = branchService.getAllBranches();
 		for (Branch branch : list) {
@@ -72,6 +83,7 @@ public class BranchController {
 
 		return "createBranch";
 	}
+
 
 	@RequestMapping(value = "/deleteBranch/{id}", method = RequestMethod.GET)
 	public String deleteBranch(@PathVariable("id") int id, Model model) {

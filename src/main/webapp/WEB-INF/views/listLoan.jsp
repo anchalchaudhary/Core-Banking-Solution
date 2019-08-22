@@ -34,6 +34,7 @@
 				<table class="tg" style="margin-left:auto;margin-right:auto;">
 					<tr>
 						<th width="80">Loan ID</th>
+						<th width="120">Loan Amount</th>
 						<th width="120">Loan Rate</th>
 						<th width="120">Loan Tenure</th>
 						<th width="60">Edit</th>
@@ -42,6 +43,7 @@
 					<c:forEach items="${list}" var="loan">
 						<tr>
 							<td><c:out value="${loan.id}"></c:out></td>
+							<td>${loan.amount}</td>
 							<td>${loan.rate}</td>
 							<td>${loan.tenure}</td>
 							<td><a href="<c:url value='/updateLoan/${loan.id}' />">Edit</a></td>

@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -41,6 +40,14 @@
 					</div>
 					</div>
 				</c:if>
+				<div class="form-group row">
+					<form:label path="customerId.customerId" class="col-sm-2 col-form-label">
+						<spring:message text="Customer ID" />
+					</form:label>
+					<div class="col-sm-10">
+						<form:input path="customerId.customerId" class="form-control" />
+					</div>
+				</div>
 				<div class="form-group row">
 					<form:label path="amount" class="col-sm-2 col-form-label">
 						<spring:message text="Amount" />
@@ -92,10 +99,9 @@
 	
 		</div>
 	</div>
-	<div style="position: relative; min-height: 45vh;">
+	<div>
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
-		<%@ include file="sessionCheck.jsp"%>
-	
+	<%@ include file="sessionCheck.jsp"%>
 </body>
 </html>

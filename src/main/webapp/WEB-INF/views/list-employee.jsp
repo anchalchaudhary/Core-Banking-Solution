@@ -59,6 +59,5 @@
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
 	<%@ include file="sessionCheck.jsp"%>
-	
 </body>
 </html>
