@@ -35,13 +35,12 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#"><h4>Admin Panel</h4></a>
 		</nav>
 	</header>
 	<div class="container">
 		<br /><br /><br />
-		<br /> <br /> <br />
 		<div class="card" style="width: 20rem;">
 			<div class="card-body">
 				<h4 class="card-title">Login</h4>
