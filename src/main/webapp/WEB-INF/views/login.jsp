@@ -20,7 +20,6 @@
 	<div>
 		<jsp:include page="base_pre_login_header.jsp"></jsp:include>
 	</div>
-	
 	<div class="container">
 		<br /><br /><br />
 		<div class="card" style="width: 20rem;">
@@ -58,12 +57,16 @@
 						
 						</div>
 					</div>
+					
 					<c:if test="${ employee.empId != 0}">
 				<input type="submit" class="btn btn-primary card-link" value="<spring:message text="login again"/>" />
 			</c:if>
 			<c:if test="${employee.empId == 0}">
 				<input type="submit" class="btn btn-primary card-link" value="<spring:message text="login"/>" />
 			</c:if>
+			<c:if test="${!empty message}">
+						<span style="color:red;">${message}</span>
+					</c:if>
 				</form:form>
 			</div>
 		</div>

@@ -35,6 +35,7 @@ public class LoginController
 	public String showLoginForm(Model model)
 	{
 		model.addAttribute("employee", new Employee());
+		model.addAttribute("message", "");
 		return "login";
 	}
 	
@@ -58,6 +59,7 @@ public class LoginController
             System.out.println("credentials not matched");
             ModelAndView modelAndView=new ModelAndView();
             modelAndView.addObject("employee", employee);
+            modelAndView.addObject("message", "Credentials not matched");
             modelAndView.setViewName("login");
             return modelAndView; 
         }
