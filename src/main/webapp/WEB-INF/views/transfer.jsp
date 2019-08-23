@@ -12,9 +12,10 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
-
+	<script src="<c:url value='/assets/js/validate.js' />"></script>
+	<script src="<c:url value='/assets/js/defaultvalues.js' />"></script>
 </head>
-<body>
+<body onload="preventdefaulttransfer();">
 	
 	<div>
 		<jsp:include page="base_post_login_header.jsp"></jsp:include>	
@@ -28,7 +29,7 @@
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
-			<form:form action="transfer/${fromAccountId}" modelAttribute="transfer">	
+			<form:form action="transfer/${fromAccountId}" modelAttribute="transfer" onsubmit="return validatetransfer();">	
 				<div class="form-group row">
 						<c:if test="${transfer.id != 0}">
 								<form:hidden path="id" />
@@ -45,7 +46,8 @@
 						<spring:message text="To Account" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="toaccount" placeholder="To Account" class="form-control" />
+						<form:input path="toaccount" id="toaccount" placeholder="To Account" class="form-control" />
+						<span id="errtoaccount" style="color:red; display:none;">Enter account of receiver</span>
 					</div>
 				</div>
 
@@ -54,7 +56,8 @@
 						<spring:message text="Amount" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="amount" placeholder="Amount" class="form-control" />
+						<form:input path="amount" type="number" id="amount" min="1" placeholder="Amount" class="form-control" />
+						<span id="erramount" style="color:red; display:none;">Enter amount to transfer</span>
 					</div>
 				</div>
 				<c:if test="${!empty transfer.id}">

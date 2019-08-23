@@ -13,8 +13,11 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/home.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
-	
-
+	<%
+	    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
+	    response.setHeader("Pragma","no-cache"); //HTTP 1.0
+	    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	%>
 </head>
 <body>
 
@@ -33,7 +36,7 @@
 			<c:if test="${customer.customerId ne 0}">
 				<table class="tg" style="margin-left:auto;margin-right:auto;">
 					<tr>
-						<th>Customer ID</th>
+						<th width="120">Customer ID</th>
 						<td>${customer.customerId}</td>
 					</tr>
 					<tr>
@@ -76,7 +79,7 @@
 						<td>${customer.account.accountId}</td>
 					</tr>
 					<tr>
-						<th>Account Number</th>
+						<th width="150">Account Number</th>
 						<td>${customer.account.accountno}</td>
 					</tr>
 					<tr>

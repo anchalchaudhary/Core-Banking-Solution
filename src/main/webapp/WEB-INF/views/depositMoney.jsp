@@ -13,9 +13,15 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
-	
+	<script src="<c:url value='/assets/js/validate.js' />"></script>
+	<script src="<c:url value='/assets/js/defaultvalues.js' />"></script>
+	<%
+	    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
+	    response.setHeader("Pragma","no-cache"); //HTTP 1.0
+	    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	%>
 </head>
-<body>
+<body onload="preventdefaultdepositwithdraw();">
 	
 	<div>
 		<jsp:include page="base_post_login_header.jsp"></jsp:include>	
@@ -28,7 +34,7 @@
 			<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
-			<form:form action="depositMoney/${accountId}" modelAttribute="personalTransaction">
+			<form:form action="depositMoney/${accountId}" modelAttribute="personalTransaction" onsubmit="return validatedepositwithdraw();">
 				<div class="form-group row">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-10">
@@ -41,7 +47,8 @@
 						<spring:message text="Amount" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="sum" class="form-control" />
+						<form:input path="sum" type="number" min="1" id="sum" class="form-control" />
+						<span id="errsum" style="color:red; display:none;">Enter amount to be deposited</span>
 					</div>
 				</div>
 			<input type="submit" class="btn btn-primary" style="margin-left:auto;margin-right:auto;" value="<spring:message text="Deposit"/>" />

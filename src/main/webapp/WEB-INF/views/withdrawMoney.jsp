@@ -12,9 +12,10 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
-	
+	<script src="<c:url value='/assets/js/validate.js' />"></script>
+	<script src="<c:url value='/assets/js/defaultvalues.js' />"></script>
 </head>
-<body>
+<body onload="preventdefaultdepositwithdraw();">
 	<div>
 		<jsp:include page="base_post_login_header.jsp"></jsp:include>	
 	</div>
@@ -27,7 +28,7 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
 			<br /><br />
-			<form:form action="withdrawMoney/${accountId}" modelAttribute="personalTransaction">
+			<form:form action="withdrawMoney/${accountId}" modelAttribute="personalTransaction" onsubmit="return validatedepositwithdraw();">
 				<div class="form-group row">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-10">
@@ -40,7 +41,8 @@
 						<spring:message text="Amount" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="sum" class="form-control" />
+						<form:input path="sum" type="number" min="1" id="sum" class="form-control" />
+						<span id="errsum" style="color:red; display:none;">Enter amount to withdraw</span>
 					</div>
 				</div>
 			<input type="submit" class="btn btn-primary" style="margin-left:auto;margin-right:auto;" value="<spring:message text="Withdraw"/>" />

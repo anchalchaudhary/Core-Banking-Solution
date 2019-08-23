@@ -15,6 +15,11 @@
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
 	<script src="<c:url value='/assets/js/validate.js' />"></script>
 	<script src="<c:url value='/assets/js/defaultvalues.js' />"></script>
+	<%
+	    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
+	    response.setHeader("Pragma","no-cache"); //HTTP 1.0
+	    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	%>
 </head>
 <body onload="preventdefaultaccount();">
 

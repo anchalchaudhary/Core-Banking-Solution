@@ -13,7 +13,11 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/home.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
-	
+	<%
+	    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
+	    response.setHeader("Pragma","no-cache"); //HTTP 1.0
+	    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	%>
 </head>
 <body>
 	<div>
@@ -30,9 +34,9 @@
 				<c:if test="${!empty list}">
 					<table class="tg" style="margin-left:auto;margin-right:auto;">
 						<tr>
-							<th width="80">Customer ID</th>
-							<th width="120">Customer Name</th>
-							<th width="120">Phone</th>
+							<th width="150">Customer ID</th>
+							<th width="200">Customer Name</th>
+							<th width="150">Phone</th>
 						</tr>
 						<c:forEach items="${list}" var="customer">
 							<tr>

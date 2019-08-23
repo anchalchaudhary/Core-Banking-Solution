@@ -13,7 +13,17 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/home.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
-	
+	<script src="<c:url value='/assets/js/validate.js' />"></script>
+	<script>
+	  $( function() {
+	    $( document ).tooltip();
+	  } );
+  </script>
+  <%
+	    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
+	    response.setHeader("Pragma","no-cache"); //HTTP 1.0
+	    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	%>
 </head>
 <body>
 	<div>
@@ -27,7 +37,7 @@
 				<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
-			<form:form action="add_employee" modelAttribute="employee">	
+			<form:form action="add_employee" modelAttribute="employee" onsubmit="return validateemployee();">	
 				<div class="form-group row">		
 				<c:if test="${!empty employee.empName}">
 						<div class=col-sm-2>
@@ -43,7 +53,8 @@
 						<spring:message text="Employee Name" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="empName" placeholder="Employee Name" class="form-control" />
+						<form:input path="empName" id="name" placeholder="Employee Name" class="form-control" />
+						<span id="errname" style="color:red; display:none;">Enter name</span>
 					</div>
 				</div>
 
@@ -52,7 +63,8 @@
 						<spring:message text="User Name" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="empUserName" placeholder="User Name" class="form-control" />
+						<form:input path="empUserName" id="username" placeholder="User Name" class="form-control" />
+						<span id="errusername" style="color:red; display:none;">Enter username</span>
 					</div>
 				</div>
 
@@ -61,7 +73,8 @@
 						<spring:message text="Password" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="empPassword" type="password" placeholder="Password" class="form-control" />
+						<form:input path="empPassword" id="password" type="password" placeholder="Password" class="form-control" oninput="return validatepassword();" title="Password should be minimum 5 characters long and must contain atleast: 1 lowercase alphabet, 1 uppercase alphabet, 1 numeric character and 1 special symbol (#, @, $, !)"/>
+						<span id="errpassword" style="color:red; display:none;"></span>
 					</div>
 				</div>
 				<c:if test="${!empty employee.empName}">

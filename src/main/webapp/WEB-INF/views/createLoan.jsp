@@ -12,8 +12,15 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/home.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
+	<script src="<c:url value='/assets/js/validate.js' />"></script>
+	<script src="<c:url value='/assets/js/defaultvalues.js' />"></script>
+	<%
+	    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
+	    response.setHeader("Pragma","no-cache"); //HTTP 1.0
+	    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	%>
 </head>
-<body>
+<body onload="preventdefaultloan();">
 	
 	<div>
 		<jsp:include page="base_post_login_header.jsp"></jsp:include>	
@@ -27,7 +34,7 @@
 		<div class="col-sm-6">
 			<h3>Create Loan</h3>
 			<br />
-			<form:form action="addLoan" modelAttribute="loan">
+			<form:form action="addLoan" modelAttribute="loan" onsubmit="return validateloan();">
 				<c:if test="${loan.id != 0}">
 					<div class="form-group row">
 					<form:label path="id"
@@ -45,7 +52,8 @@
 						<spring:message text="Customer ID" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="customerId.customerId" class="form-control" />
+						<form:input path="customerId.customerId" type="number" min="1" id="customerid" class="form-control" />
+						<span id="errcustomerid" style="color:red; display:none;">Enter Customer ID</span>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -53,7 +61,8 @@
 						<spring:message text="Amount" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="amount" class="form-control" />
+						<form:input path="amount" type="number" min="1" id="amount" class="form-control" />
+						<span id="erramount" style="color:red; display:none;">Enter amount</span>
 					</div>
 				</div>
 				
@@ -62,7 +71,8 @@
 						<spring:message text="Tenure" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="tenure" class="form-control" />
+						<form:input path="tenure" type="number" min="1" id="tenure" class="form-control" />
+						<span id="errtenure" style="color:red; display:none;">Enter tenure</span>
 					</div>
 				</div>
 				
@@ -71,11 +81,13 @@
 						<spring:message text="Type" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:select path="type" class="form-control">
+						<form:select path="type" class="form-control" id="loantype">
+						 <form:option selected="selected" value="">Select...</form:option>
   					     <form:option value="Gold Loan" label="Gold Loan"/>
   					     <form:option value="Home Loan" label="Home Loan"/>
   					     <form:option value="Vehicle Loan" label="Vehicle Loan"/>		    
 						</form:select>
+						<span id="errloantype" style="color:red; display:none;">Select a loan type</span>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -83,7 +95,8 @@
 						<spring:message text="Rate" />
 					</form:label>
 					<div class="col-sm-10">
-						<form:input path="rate" class="form-control" />
+						<form:input path="rate" type="number" min="1" id="rate" class="form-control" />
+						<span id="errrate" style="color:red; display:none;">Enter rate</span>
 					</div>
 				</div>
 				<c:if test="${loan.id != 0}">
@@ -99,7 +112,7 @@
 	
 		</div>
 	</div>
-	<div>
+	<div style="position: relative; min-height: 16.5vh;">
 		<jsp:include page="base_pre_login_footer.jsp"></jsp:include>
 	</div>
 	<%@ include file="sessionCheck.jsp"%>

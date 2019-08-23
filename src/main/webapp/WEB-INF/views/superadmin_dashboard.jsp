@@ -13,7 +13,11 @@
 	<link href="<c:url value='/assets/css/base_pre_login.css' />" rel="stylesheet" type="text/css">
 	<link href="<c:url value='/assets/css/home.css' />" rel="stylesheet">
 	<link href="<c:url value='/assets/css/sidebar.css' />" rel="stylesheet">
-	
+	<%
+	    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
+	    response.setHeader("Pragma","no-cache"); //HTTP 1.0
+	    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	%>
 </head>
 <body>
 	<div>
